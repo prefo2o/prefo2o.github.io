@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Eureka | Human-Level Reward Design via Coding Large Language Models</title>
+    <title>Offline-to-Online Latent Preference Transfer for Zero-Shot Preference-Based Reinforcement Learning</title>
 
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
@@ -35,788 +35,1216 @@
             <div class="container is-max-desktop">
                 <div class="columns is-centered">
                     <div class="column has-text-centered">
-                        <h1 class="title is-1 publication-title">Eureka: Human-Level Reward Design via Coding Large
-                            Language Models</h1>
-                        <!-- <h3 class="title is-4 conference-authors"><a target="_blank" href="https://icml.cc/">ICML 2023</a>
-                    </h3> -->
+                        <h1 class="title is-1 publication-title">Offline-to-Online Latent Preference Transfer for Zero-Shot Preference-Based Reinforcement Learning</h1>
+
                         <div class="is-size-5 publication-authors">
                             <span class="author-block">
-                                <a target="_blank" href="https://www.seas.upenn.edu/~jasonyma/">
-                                    Jason&#160;Ma</a>
-                                    <a href="mailto:jasonyma@seas.upenn.edu">
-                                        <span class="icon">
-                                            <i class="fa fa-envelope"></i>
-                                        </span>
-                                    </a>
-                                    <sup>1 2</sup>,
-                                <a target="_blank"
-                                    href="https://www.seas.upenn.edu/~wjhliang/">William&#160;Liang</a><sup>2</sup>,
-
-                                <a target="_blank" href="https://guanzhi.me/">Guanzhi&#160;Wang</a><sup>1 3</sup>,
-                                <a target="_blank"
-                                    href="https://ai.stanford.edu/~dahuang/">De-An&#160;Huang</a><sup>1</sup>,
-                                <br>
-                                <a target="_blank"
-                                    href="https://obastani.github.io/">Osbert&#160;Bastani</a><sup>2</sup>,
-                                <a target="_blank"
-                                    href="https://www.seas.upenn.edu/~dineshj/">Dinesh&#160;Jayaraman</a><sup>2</sup>,
-
-                                <a target="_blank" href="https://www.cs.utexas.edu/~yukez/">Yuke&#160;Zhu</a><sup>1
-                                    4</sup>,
-                                <a target="_blank" href="https://jimfan.me/">Linxi&#160;"Jim"&#160;Fan</a>
-                                <a href="mailto:dr.jimfan.ai@gmail.com">
+                                <a target="_blank" href="none">
+                                    Anonymous Author</a>
+                                <!-- <a href="mailto:wang5357@purdue.edu">
                                     <span class="icon">
                                         <i class="fa fa-envelope"></i>
-                                    </span>
+                                    </span> -->
                                 </a>
-                                <sup>1&#8225</sup>,
-                                <a target="_blank"
-                                    href="http://tensorlab.cms.caltech.edu/users/anima/">Anima&#160;Anandkumar</a><sup>1
-                                    3&#8225</sup>
+                                <sup>1,&dagger;</sup>,
+                                <!-- <a target="_blank">Dezhong&#160;Zhao</a><sup>1,2,&dagger;</sup>,
+                                <a target="_blank" href="https://www.smart-laboratory.org/group/Ziqin_Yuan.html">Ziqin&#160;Yuan</a><sup>1,&dagger;</sup>,
+                                <a target="_blank">Tianyu&#160;Shao</a><sup>1</sup>,
+                                <br>
+                                <a target="_blank">Guohua&#160;Chen</a><sup>2</sup>,
+                                <a target="_blank">Dominic &#160;Kao</a><sup>3</sup>,
+                                <a target="_blank">Sungeun &#160;Hong</a><sup>4</sup>,
+                                <a target="_blank" href="https://www.smart-laboratory.org/group/bcm.html">Byung-Cheol&#160;Min</a><sup>1,5</sup> -->
                             </span>
                         </div>
 
                         <div class="is-size-5 publication-authors">
-                            <span class="author-block"><sup>1</sup>NVIDIA; </span>
-                            <span class="author-block"><sup>2</sup>UPenn; </span>
-                            <span class="author-block"><sup>3</sup>Caltech; </span>
-                            <span class="author-block"><sup>4</sup>UT Austin;</span>
-                            <span class="author-block"><sup>&#8225;</sup>Equal Advising </span>
+                            <span class="author-block"><sup>1</sup>Address; </span>
+                            <!-- <span class="author-block"><sup>2</sup>BUCT; </span>
+                            <span class="author-block"><sup>3</sup>UIUC; </span>
+                            <span class="author-block"><sup>4</sup>Sungkyunkwan University;</span>
+                            <span class="author-block"><sup>5</sup>Indiana University Bloomington;</span> -->
+                            <!-- <span class="author-block"><sup>&dagger;</sup>Equal Contribution </span> -->
                         </div>
-                        <div class="is-size-5 publication-authors">
 
-                        <span class="author-block">
-                                    <span class="icon">
-                                        <i class="fa fa-envelope"></i>
-                                    </span>
-                            Corresponding authors: jasonyma@seas.upenn.edu, dr.jimfan.ai@gmail.com
-                        </span>
-                        </div>
-                        <!-- <div class="is-size-5 publication-authors">
-                        <span class="author-block">Work done during the first author's internship at NVIDIA</span>
+                        <!-- <div class="is-size-5 publication-note">
+                            <em>🎤 To be presented at <strong>NeurIPS 2025</strong> as an <strong>Oral</strong></em>
                         </div> -->
 
-                        <!-- <div class="is-size-5 publication-authors">
-                        <span class="author-block"><sup>&dagger;</sup>Equal Contribution</span>
-                        <span class="author-block"><sup>&#8225;</sup>Equal Advising </span>
-                    </div> -->
-
+                        <!-- Buttons Section -->
                         <div class="column has-text-centered">
                             <div class="publication-links">
-                                <!-- TODO REPLACE ALL LINKS -->
                                 <span class="link-block">
-                                    <a target="_blank" href="https://arxiv.org/abs/2310.12931"
-                                        class="external-link button is-normal is-rounded is-dark">
-                                        <span class="icon">
-                                            <i class="ai ai-arxiv"></i>
-                                        </span>
-                                        <span>arXiv</span>
-                                    </a>
-                                </span>
-
-                                <span class="link-block">
-                                    <a target="_blank" href="assets/eureka_paper.pdf"
+                                    <a target="_blank" href="none"
                                         class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon">
                                             <i class="fas fa-file-pdf"></i>
                                         </span>
-                                        <span>PDF</span>
+                                        <span>Paper</span>
                                     </a>
-                                    <a target="_blank" href="https://github.com/eureka-research/Eureka"
+                                </span>
+
+                                <span class="link-block">
+                                    <a target="_blank" href="none"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-image"></i>
+                                        </span>
+                                        <span>Poster</span>
+                                    </a>
+                                </span>
+
+                                <span class="link-block">
+                                    <a target="_blank" href="none"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-chalkboard-teacher"></i>
+                                        </span>
+                                        <span>Presentation</span>
+                                    </a>
+                                </span>
+                                
+                                <span class="link-block">
+                                    <a target="_blank" href="https://github.com/prefo2o/PrefO2O"
                                         class="external-link button is-normal is-rounded is-dark">
                                         <span class="icon">
                                             <i class="fab fa-github"></i>
                                         </span>
                                         <span>Code</span>
                                     </a>
-                                    <!-- <a target="_blank" href="https://github.com/vimalabs/VIMA#pretrained-models"
-                                        class="external-link button is-normal is-rounded is-dark">
-                                        <span class="icon">
-                                            <i class="fa fa-network-wired"></i>
-                                        </span>
-                                        <span>Models</span>
-                                    </a> -->
-                                    <!-- <a target="_blank" href="https://github.com/vimalabs/VimaBench"
-                                        class="external-link button is-normal is-rounded is-dark">
-                                        <span class="icon">
-                                            <i class="fas fa-robot"></i>
-                                        </span>
-                                        <span>Benchmark</span>
-                                    </a> -->
-                                    <!-- <a target="_blank" href="https://huggingface.co/datasets/VIMA/VIMA-Data"
-                                        class="external-link button is-normal is-rounded is-dark">
-                                        <span class="icon">
-                                            <i class="fas fa-database"></i>
-                                        </span>
-                                        <span>Dataset</span>
-                                    </a> -->
                                 </span>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section" style="padding: 0">
-        <div class="container is-max-desktop">
-            <!-- Abstract. -->
-            <div class="columns is-centered has-text-centered">
-                <video poster="" id="" autoplay controls muted loop width="100%" playbackRate=2.0 style="border-radius: 5px;">
-                    <source src="videos/eureka_zoomout.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container is-max-desktop">
-            <!-- Abstract. -->
-            <div class="columns is-centered has-text-centered">
-                <div class="column">
-                    <h2 class="title is-3">Abstract</h2>
-                    <div class="content has-text-justified">
-                        <p style="font-size: 125%">
-                            Large Language Models (LLMs) have excelled as high-level semantic planners for sequential decision-making tasks. However, harnessing them to learn complex low-level manipulation tasks, such as dexterous pen spinning, remains an open problem. We bridge this fundamental gap and present Eureka, a human-level reward design algorithm powered by LLMs. Eureka exploits the remarkable zero-shot generation, code-writing, and in-context improvement capabilities of state-of-the-art LLMs, such as GPT-4, to perform evolutionary optimization over reward code. The resulting rewards can then be used to acquire complex skills via reinforcement learning. Without any task-specific prompting or pre-defined reward templates, Eureka generates reward functions that outperform expert human-engineered rewards. In a diverse suite of 29 open-source RL environments that include 10 distinct robot morphologies, Eureka outperforms human experts on <b>83%</b> of the tasks, leading to an average normalized improvement of <b>52%</b>. The generality of Eureka also enables a new gradient-free in-context learning approach to reinforcement learning from human feedback (RLHF), readily incorporating human inputs to improve the quality and the safety of the generated rewards without model updating. Finally, using Eureka rewards in a curriculum learning setting, we demonstrate for the first time, a simulated Shadow Hand capable of performing pen spinning tricks, adeptly manipulating a pen in circles at rapid speed.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container is-max-widescreen">
-            <div class="rows">
-                <div class="rows is-centered ">
-                    <div class="row is-full-width">
-                        <h2 class="title is-3"><span class="dvima">Eureka Rewards and Policies</span></h2>
-                        <p style="font-size: 125%">
-                            In this demo, we visualize the unmodified best Eureka reward
-                            for each
-                            environment and the policy trained using this reward. Our environment suite spans 10 robots and 29 distinct tasks across two 
-                            open-sourced benchmarks, Isaac Gym (Isaac) and Bidexterous Manipulation (Dexterity).
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="columns" style="align-items: end;">
-                <div class="column is-half">
-                    <p style="font-size: 1.5em"><b>Isaac</b></p>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <img src="videos/task_final/allegro_hand.png" width="18%" style="border-radius: 5px;" alt='<b>AllegroHand</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/allegro_hand.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/ant.png" width="18%" style="border-radius: 5px;" alt='<b>Ant</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/ant.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/anymal.png" width="18%" style="border-radius: 5px;" alt='<b>Anymal</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/anymal.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/ball_balance.png" width="18%" style="border-radius: 5px;" alt='<b>BallBalance</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/ball_balance.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/cartpole.png" width="18%" style="border-radius: 5px;" alt='<b>Cartpole</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/cartpole.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/franka_cabinet.png" width="18%" style="border-radius: 5px;" alt='<b>FrankaCabinet</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/franka_cabinet.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/humanoid.png" width="18%" style="border-radius: 5px;" alt='<b>Humanoid</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/humanoid.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/quadcopter.png" width="18%" style="border-radius: 5px;" alt='<b>Quadcopter</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/quadcopter.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/shadow_hand.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHand</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand.txt' onclick="populateDemo(this, 1);">
-                    </div>
-
-                    <br>
-                    <p style="font-size: 1.5em"><b>Dexterity</b></p>
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <img src="videos/task_final/bidex_block_stacking.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandBlockStack</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_block_stack.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_bottle_cap.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandBottleCap</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_bottle_cap.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_catch_abreast.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandCatchAbreast</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_catch_abreast.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_catch_over2underarm.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandCatchOver2Underarm</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_catch_over_2_underarm.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_catch_underarm.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandCatchUnderarm</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_catch_underarm.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_door_close_inward.png" width="18%" style="border-radius: 5px;"
-                            alt='<b>ShadowHandDoorCloseInward</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_door_close_inward.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_door_close_outward.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandDoorCloseOutward</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_door_close_outward.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_door_open_inward.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandDoorOpenInward</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_door_open_inward.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_door_open_outward.png" width="18%" style="border-radius: 5px;"
-                            alt='<b>ShadowHandDoorOpenOutward</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_door_open_outward.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_grasp_and_place.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandGraspAndPlace</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_grasp_and_place.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_kettle.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandKettle</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_kettle.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_lift_undearm.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandLiftUnderarm</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_lift_underarm.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_over.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandOver</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_over.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_pen.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandPen</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_pen.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_push_block.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandPushBlock</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_push_block.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_re_orientation.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandReorientation</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_reorientation.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_scissors.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandScissors</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_scissors.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_swing_cup.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandSwingCup</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_swing_cup.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_switch.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandSwitch</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_switch.txt' onclick="populateDemo(this, 1);">
-
-                        <img src="videos/task_final/bidex_two_catch_underarm.png" width="18%" style="border-radius: 5px;" alt='<b>ShadowHandTwoCatchUnderarm</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/shadow_hand_two_catch_underarm.txt' onclick="populateDemo(this, 1);">
-                    </div>
-                </div>
-                <div class="row border rounded" style="padding-top:12px; padding-bottom:12px;">
-                    <div class="col-md-6">
-                        <video id="demo-video-1" style="border-radius: 5px;" autoplay loop muted webkit-playsinline
-                            playsinline onclick="setAttribute('controls', 'true');">
-                            <source id="expandedImg-1" src="videos/placeholder.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div id="imgtext-1" style="font-size: 1.5em">Select an image above:</div>
-                <div>
-                    <pre
-                        class="p-1"><code class="language-python" id="answer-1">Eureka response shown within code block.</code></pre>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container is-max-widescreen">
-            <div class="rows">
-                <div class="rows is-centered ">
-                    <div class="row is-full-width">
-                        <h2 class="title is-3"><span class="dvima">Eureka Pen Spinning Gallery</span></h2>
-                        <p style="font-size: 125%">
-                            Combining Eureka with curriculum learning, we demonstrate for the first time a Shadow Hand performing various pen spinning tricks.
-                            Our main pen spinning axis (center video in the grid) is perpendicular to the palm of the hand, thus defining the spin as parallel to the palm—similar to the ''finger pass'' trick. In addition, we also train several other variations with different axes where each xyz component is chosen from [-1,0,1], resulting in numerous unique patterns.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- <div class="hero is-light is-small"> -->
-        <div>
-
-            <div class="hero-body">
-                <div class="container is-max-desktop">
-                    <div class="columns is-centered has-text-centered">
-                        <video poster="" id="" autoplay controls muted loop width="80%" playbackRate=2.0 style="border-radius: 5px;">
-                            <source src="videos/pen_styles.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
-                <br>
-                <div class="container">
-                    <div id="results-carousel" class="carousel results-carousel">
-                        <div class="item">
-                            <video poster="" id="" autoplay controls muted loop height="100%" playbackRate=2.0>
-                                <source src="videos/pen_gallery/pen_spin_center.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="item">
-                            <video poster="" id="" autoplay controls muted loop height="100%" playbackRate=2.0>
-                                <source src="videos/pen_gallery/pen_spin_upside_down.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="item">
-                            <video poster="" id="" autoplay controls muted loop height="100%" playbackRate=2.0>
-                                <source src="videos/pen_gallery/pen_spin_custom_-11-1.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="item">
-                            <video poster="" id="" autoplay controls muted loop height="100%" playbackRate=2.0>
-                                <source src="videos/pen_gallery/pen_spin_custom_-101.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="item">
-                            <video poster="" id="" autoplay controls muted loop height="100%" playbackRate=2.0>
-                                <source src="videos/pen_gallery/pen_spin_custom_-110.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="item">
-                            <video poster="" id="" autoplay controls muted loop height="100%" playbackRate=2.0>
-                                <source src="videos/pen_gallery/pen_spin_custom_-1.0,1.0,-1.0.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="item">
-                            <video poster="" id="" autoplay controls muted loop height="100%" playbackRate=2.0>
-                                <source src="videos/pen_gallery/pen_spin_custom_1.0,0.0,0.0.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="item">
-                            <video poster="" id="" autoplay controls muted loop height="100%" playbackRate=2.0>
-                                <source src="videos/pen_gallery/pen_spin_custom_0-11.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="item">
-                            <video poster="" id="" autoplay controls muted loop height="100%" playbackRate=2.0>
-                                <source src="videos/pen_gallery/pen_spin_custom_withflip_0.0,-1.0,0.0.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="section">
-        <div class="container is-max-widescreen">
-            <div class="rows">
-                <div class="rows is-centered ">
-                    <div class="row is-full-width">
-                        <h2 class="title is-3"><span class="dvima">Eureka Components</span></h2>
-
-                        <!-- <img src="assets/images/eureka.png" class="interpolation-image" alt=""
-                            style="display: block; margin-left: auto; margin-right: auto" />
-                        <br> -->
-                        <div class="columns is-centered has-text-centered">
-                        <video poster="" id="" autoplay controls muted width="90%" playbackRate=2.0 style="border-radius: 5px;">
-                            <source src="assets/images/eureka.mp4" type="video/mp4">
-                        </video>
-                        </div>
-                        <span style="font-size: 125%"><b>Overview.</b> Eureka achieves human-level reward design by in-context <b>evolving</b> reward functions
-                            More specifically, Eureka first takes unmodified environment
-                            source code
-                            and language task description as context to
-                            zero-shot generate executable reward functions from a coding LLM. Then, it iterates
-                            between
-                            evolutionary reward search,
-                            GPU-accelerated reward evaluation, and reward reflection to progressively improve
-                            its reward
-                            outputs.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container is-max-widescreen">
-            <div class="rows">
-                <div class="rows is-centered ">
-                    <div class="row is-full-width">
-
-                        <div class="columns is-centered has-text-centered">
-                            <video poster="" id="" autoplay controls muted loop width="70%" height="100%" playbackRate=2.0 style="border-radius: 5px;">
-                                <source src="videos/eureka_env_context.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <span style="font-size: 125%">
-                        <span style="font-weight: bold">Environment as Context.</span> 
-                        By using the raw environment code as context, Eureka can zero-shot generate plausible reward programs, without any task-specific prompt engineering. This allows Eureka to be a <b>generalist</b> reward designer,
-                         readily producing reward functions on first try for all our environments.                        </span>
-                        <br>
-                        <br>
-                        <br>
-
-                        <div class="columns is-centered has-text-centered">
-                        <video poster="" id="" autoplay controls muted loop width="70%" height="100%" playbackRate=2.0 style="border-radius: 5px;">
-                            <source src="videos/shadow_hand_multi.mp4" type="video/mp4">
-                        </video>
-                        </div>
-                        <span style="font-size: 125%">
-                        <span style="font-weight: bold">Rapid Reward Evaluation via Massively Parallel RL.</span> 
-                        Leveraging state-of-the-art GPU-accelerated simulation in NVIDIA Isaac Gym, Eureka is able to quickly evaluate 
-                        the quality of a large batch of reward candidates, enabling scalable search in the reward function space.
-                        </span>
-                        <br>
-                        <br>
-                        <br>
-
-                        <div class="columns is-centered has-text-centered">
-                        <video poster="" id="" autoplay controls muted loop width="70%" height="100%" playbackRate=2.0 style="border-radius: 5px;">
-                            <source src="videos/eureka_reward_reflection.mp4" type="video/mp4">
-                        </video>
-                        </div>
-                        <!-- <img src="assets/images/reward_diff.png" class="interpolation-image" alt="" -->
-                        <!-- style="display: block; margin-left: auto; margin-right: auto; max-width: 80%;" /> -->
-                        <span style="font-size: 125%">
-                            <span style="font-weight: bold">Eureka Reward Reflection.</span> After reward evaluation, 
-                            Eureka constructs reward reflection that summarizes the key statistics of the RL training. Then, Eureka uses this reward reflection 
-                            to enable the backbone LLM (GPT-4) to flexibly improve the reward functions with many distinct
-                            types of free-form, targeted modification, such as (1) changing the hyperparameter of existing
-                            reward
-                            components, (2)
-                            changing the functional form of existing reward components, and (3) introducing new
-                            reward
-                            components.</span>
-                        </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <div class="container is-max-widescreen">
-            <div class="rows">
-                <div class="rows is-centered ">
-                    <div class="row is-full-width">
-                        <h2 class="title is-3"><span class="dvima">Experiments</span></h2>
-                        <p style="font-size: 125%">
-                            We thoroughly evaluate Eureka on a diverse suite of robot embodiments and tasks,
-                            testing its
-                            ability
-                            to generate reward functions, solve new tasks, and incorporate various forms of
-                            human input.
-                        </p>
-                        <br>
-                        <p style="font-size: 125%">
-                            Our environments consist of 10 distinct robots and 29 tasks implemented using the
-                            IsaacGym simulator. First, we include 9 original environments from
-                            IsaacGym (Isaac), covering a diverse set of robot morphologies from quadruped,
-                            bipedal,
-                            quadrotor,
-                            cobot arm, to dexterous hands. In addition to coverage over robot form factors, we
-                            ensure
-                            depth in our
-                            evaluation by including all 20 tasks from the Bidexterous Manipulation (Dexterity)
-                            benchmark.
-                            Dexterity contains 20 complex bi-manual tasks that require a pair of Shadow Hands to
-                            solve a wide range of complex manipulation skills, ranging from object handover to
-                            rotating
-                            a cup by
-                            180 degrees
-                        </p>
-                        <br>
-                        <br>
-
-                        <h3 class="title is-4"><span class="dvima">Evaluation Results</span></h3>
-
-                        <img src="assets/images/eureka_bar_chart.png" class="interpolation-image" alt=""
-                            style="display: block; margin-left: auto; margin-right: auto" />
-                        <br>
-                        <span style="font-size: 125%">
-                            <span style="font-weight: bold">Eureka can generate super human-level reward functions.</span> Across 29 tasks, Eureka rewards outperform expert human-written ones on 83% of them with an average normalized improvement of 52%.
-                             In particular, Eureka realizes much greater gains on high-dimensional
-                            dexterity
-                            environments.
-                        </span>
-                        <br>
-                        <br>
-                        <br>
-
-                        <img src="assets/images/eureka_improvement.png" class="interpolation-image" alt=""
-                            style="display: block; width: 60%; margin-left: auto; margin-right: auto" />
-                        <br>
-                        <span style="font-size: 125%">
-                            <span style="font-weight: bold">Eureka evolutionay reward search enables consistent reward improvement over time.</span> Eureka progressively produces better
-                            rewards that eventually exceed human-level by combining large-scale reward search with detailed reward reflection feedback.
-                        </span>
-                        <br>
-                        <br>
-                        <br>
-
-                        <!-- <h3 class="title is-4"><span class="dvima">Comparison with Human Rewards</span></h3> -->
-                        <br>
-
-                        <img src="assets/images/isaac_eureka_correlation.png" class="interpolation-image" alt=""
-                            style="display: block; width: 40%; margin-left: auto; margin-right: auto" />
-                        <br>
-                        <span style="font-size: 125%">
-                            <span style="font-weight: bold">Eureka generates novel rewards.</span>  We 
-                            assess the novelty of Eureka rewards by computing the correlations between Eureka and human rewards on all Isaac tasks.
-                            As shown, Eureka mostly generates weakly correlated reward functions that outperform the human ones. In addition, we observe that 
-                            <b>the harder the task is, the less correlated the Eureka rewards.</b> In a few cases, Eureka rewards are even negatively correlated with human rewards while significantly 
-                            outperforming them. 
-                        </span>
-                        <br>
-                        <br>
-                        <br>
-
-                        <h3 class="title is-4"><span class="dvima">Dexterous Pen Spinning via Curriculum Learning</span></h3>
-
-                        <br>
-
-                        <div class="columns">
-                            <div class="column">
-                                <img src="assets/images/eureka_pen_spinning.png" class="interpolation-image" alt="" />
-                                    <!-- style="display: block; width: 40%; margin-left: auto; margin-right: auto" /> -->
-                                <br>
-                            </div>
-                            <div class="column has-text-centered">
-                                <video poster="" id="" autoplay controls muted loop height="100%" playbackRate=2.0 style="border-radius: 5px;">
-                                    <source src="videos/task_final/shadow_hand.mp4" type="video/mp4">
-                                </video>
-                                <p style="font-size: 110%">Pretrained Pen Reorientation</p>
-                            </div>
-                            <div class="column has-text-centered">
-                                <video poster="" id="" autoplay controls muted loop height="100%" playbackRate=2.0 style="border-radius: 5px;">
-                                    <source src="videos/pen_gallery/pen_spin_center.mp4" type="video/mp4">
-                                </video>
-                                <p style="font-size: 110%">Finetuned Pen Spinning</p>
+                                
                             </div>
                         </div>
-                        <span style="font-size: 125%">
-                            <span style="font-weight: bold"></span> The pen spinning task requires a Shadow Hand to continuously rotate a pen to achieve some pre-defined spinning patterns for 
-                            as many cycles as possible. We solve this task by (1) instructing Eureka to generate a reward function for re-orienting the pen to random target configurations,
-                            and then (2) fine-tuning this pre-trained policy using the Eureka reward to reach the desired sequence of pen-spinning configurations.
-                            As shown, Eureka fine-tuning quickly adapts the policy successfully spin the pen for many cycles in a row. In contrast, neither pre-trained or learning-from-scratch 
-                            policies can complete even a single cycle.
-                        </span>
-                        <br>
-                        <br>
-                        <br>
 
-                        <h3 class="title is-3"><span class="dvima">Eureka from Human Feedback</span></h3>
-                        <br>
-
-                        <img src="assets/images/bidex_reward_assistant.png" class="interpolation-image" alt=""
-                            style="display: block; width: 70%; margin-left: auto; margin-right: auto" />
-                        <br>
-                        <span style="font-size: 125%">
-                            <span style="font-weight: bold">Eureka effectively improves and benefits from human reward initialization.</span> 
-                        We study whether starting with a human reward function initialization, a common scenario in real-world RL applications, is advantageous for Eureka. 
-                        As shown, regardless of the quality of the human rewards, Eureka improves and benefits from human rewards as Eureka (Human Init.) is uniformly better than both Eureka and Human on all tasks.
-                        </span>
-                        <br>
-                        <br>
-
-                        <img src="assets/images/eureka_rlhf.png" class="interpolation-image" alt=""
-                            style="display: block; width: 100%; margin-left: auto; margin-right: auto" />
-                        <br>
-                        <span style="font-size: 125%">
-                            <span style="font-weight: bold">Eureka enables In-Context Reinforcement Learning from Human Feedback (RLHF).</span> Eureka can incorporate human feedback to modify its rewards so that they progressively induce safer and more human-aligned agent behavior. 
-                            In this example, we show how Eureka can teach a Humanoid how to run upright from a handful of human feedback, which replaces the previous automated reward reflection.
-                             The final learned behavior (Iteration 5) is more preferred by human users by a wide margin than 
-                            the original Eureka-learned Humanoid running gait. 
-                        </span>
-                        <br>
-                        <br>
-                        <br>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section">
-        <div class="container is-max-widescreen">
-            <div class="columns" style="align-items: end;">
-                <div class="column is-half">
-                    <div class="col-md-4 col-sm-4 col-xs-4">
-                        <img src="videos/humanoid_rlhf/humanoid-step0.png" width="40%" style="border-radius: 5px;" alt='<b>Iteration 1</b>, best Eureka reward:
-                        [sep]
-                        assets/rlhf_rewards/humanoid_step0.txt' onclick="populateDemo(this, 2);">
 
-                        <img src="videos/humanoid_rlhf/humanoid-step1.png" width="40%" style="border-radius: 5px;" alt='<b>Iteration 2</b>, Human feedback: <br>
-                        <span style="font-size: 0.8em; line-height: 30px;">The learned behavior resembles forward squat jump; 
-                        please revise the reward function so that the behavior resembles forward running.</span><br><br>
-                        <b>Iteration 2</b>, Eureka reward:
-                        [sep]
-                        assets/rlhf_rewards/humanoid_step1.txt' onclick="populateDemo(this, 2);">
-
-                        <img src="videos/humanoid_rlhf/humanoid-step2.png" width="40%" style="border-radius: 5px;" alt='<b>Iteration 3</b>, Human feedback: <br>
-                        <span style="font-size: 0.8em; line-height: 30px;">The learned behavior now looks like duck walk; 
-                            the legs are indeed alternating but the torso is very low. 
-                            Could you improve the reward function for upright running?</span><br><br>
-                        <b>Iteration 3</b>, Eureka reward:
-                        [sep]
-                        assets/rlhf_rewards/humanoid_step2.txt' onclick="populateDemo(this, 2);">
-
-                        <img src="videos/humanoid_rlhf/humanoid-step3.png" width="40%" style="border-radius: 5px;" alt='<b>Iteration 4</b>, Human feedback: <br>
-                        <span style="font-size: 0.8em; line-height: 30px;">The learned behavior has the robot hopping on one of its foot in order to move forward.
-                            Please revise the reward function to encourage upright running behavior.</span><br><br>
-                        <b>Iteration 4</b>, Eureka reward:
-                        [sep]
-                        assets/rlhf_rewards/humanoid_step3.txt' onclick="populateDemo(this, 2);">
-
-                        <img src="videos/humanoid_rlhf/humanoid-step4.png" width="40%" style="border-radius: 5px;" alt='<b>Iteration 5</b>, Human feedback: <br>
-                        <span style="font-size: 0.8em; line-height: 30px;">This reward function removed the penalty for low torse position that you added last time; could you just add it back in? </span><br><br>
-                        <b>Iteration 5</b>, Eureka reward:
-                        [sep]
-                        assets/rlhf_rewards/humanoid_step4.txt' onclick="populateDemo(this, 2);">
-
-                        <img src="videos/humanoid_rlhf/humanoid-norlhf.png" width="40%" style="border-radius: 5px;" alt='<b>Eureka without RLHF</b>, best Eureka reward:
-                        [sep]
-                        assets/reward_functions/humanoid.txt' onclick="populateDemo(this, 2);">
-
+<!-- <div class="columns is-centered" style="margin-top: 2rem; margin-bottom: 2rem;">
+    <div class="column is-four-fifths">
+        <div class="box" style="
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            border-left: 5px solid #6a053c;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        ">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                
+                <div style="display: flex; align-items: center; min-width: 200px;">
+                    <span class="icon is-large" style="color: #6a053c; margin-right: 1rem;">
+                        <i class="fas fa-headphones-alt fa-2x"></i>
+                    </span>
+                    <div>
+                        <h3 class="title is-5" style="margin-bottom: 0; color: #363636;">AI Generated Audio Summary</h3>
+                        <p class="subtitle is-7" style="margin-top: 2px; color: #666;">Synthesized by <strong>NotebookLM</strong> to help you understand the PRIMT paper.</p>
                     </div>
                 </div>
-                <div class="row border rounded" style="padding-top:12px; padding-bottom:12px;">
-                    <div class="col-md-6">
-                        <video id="demo-video-2" style="border-radius: 5px;" autoplay loop muted webkit-playsinline
-                            playsinline onclick="setAttribute('controls', 'true');">
-                            <source id="expandedImg-2" src="videos/placeholder.mp4" type="video/mp4">
-                        </video>
-                    </div>
+
+                <div style="flex: 1; min-width: 250px;">
+                    <audio controls style="width: 100%; height: 40px; border-radius: 20px; outline: none;">
+                        <source src="assets/PRIMT_Audio.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
                 </div>
+
             </div>
-            <div class="col-md-6">
-                <div id="imgtext-2" style="font-size: 1.5em">Select an image above:</div>
-                <div>
-                    <pre
-                        class="p-1"><code class="language-python" id="answer-2">Eureka response shown within code block.</code></pre>
+        </div>
+    </div>
+</div> -->
+
+
+    
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <h2 class="title is-3 has-text-centered" style="color: #6a053c;">Abstract</h2>
+                <div class="content has-text-justified">
+                    <p style="font-size: 125%">
+Preference-based reinforcement learning (PbRL) has emerged as a promising paradigm for learning robot behaviors aligned with human intent. However, its scalability is fundamentally limited by the need to collect expensive human preference labels for every new task. In this work, we present \textbf{PrefO2O}, an offline-to-online latent preference transfer framework that enables zero-shot PbRL on unseen target tasks without requiring any human feedback. Our core idea is to learn a task-invariant latent preference space from offline preference data on source tasks, where abstract and generalizable preference representations are disentangled from task-specific variations. This learned manifold allows PrefO2O to transfer preference structures and reward priors to new tasks robustly under distribution shift, with confidence-weighted optimal transport alignment generating reliable pseudo-preference supervision for online PbRL. Extensive experiments on robotic manipulation and locomotion benchmarks demonstrate that PrefO2O substantially outperforms existing preference-transfer baselines and matches or exceeds PbRL methods trained with real human feedback, while generalizing across multi-to-one and one-to-one transfer settings as well as across different robot embodiments.
                 </div>
             </div>
         </div>
-    </section>
-
-   
-
-<section class="section" id="BibTeX">
-    <div class="container is-max-widescreen content">
-        <h2 class="title">BibTeX</h2>
-        <pre><code>@article{ma2023eureka,
-    title   = {Eureka: Human-Level Reward Design via Coding Large Language Models},
-    author  = {Yecheng Jason Ma and William Liang and Guanzhi Wang and De-An Huang and Osbert Bastani and Dinesh Jayaraman and Yuke Zhu and Linxi Fan and Anima Anandkumar},
-    year    = {2023},
-    journal = {arXiv preprint arXiv: Arxiv-2310.12931}
-}
-</code></pre>
     </div>
 </section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="columns is-centered">
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column">
+                <h2 class="title is-3 has-text-centered" style="color: #6a053c;">Framework Overview</h2>
+                <img src="assets/concept_01.png" alt="Conceptual illustration of the PrefO2O framework" style="width: 100%; border-radius: 5px;">
+                <div class="content has-text-justified">
+                    <p style="font-size: 125%">
+                        Conceptual illustration of PrefO2O. It infers a task-invariant latent preference space from offline preference data across source tasks, capturing shared preference structures beyond task-specific variants. When deployed on an unseen target task, the learned space enables robust preference prior transfer and pseudo-preference supervision for zero-shot online PbRL without target-task human feedback.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 
+<section class="section" style="padding-top: 0;">
+    <div class="container is-max-desktop">
+        
+        <div class="box method-box" onclick="toggleMethod('method1', this)">
+            <div class="columns is-vcentered">
+                <div class="column is-1">
+                    <span class="icon is-large" style="color: #6a053c;">
+                        <i class="fas fa-plus-circle fa-2x"></i>
+                    </span>
+                </div>
                 <div class="column">
-                    <div class="content has-text-centered">
-                        <p>
-                            Website template borrowed from <a
-                                href="https://github.com/nerfies/nerfies.github.io">NeRFies</a>,
-                            <a href="https://vimalabs.github.io/">VIMA</a>, and <a
-                                href="https://language-to-reward.github.io/">L2R</a>.
-                        </p>
+                    <h3 class="title is-4">1 Hierarchical Neuro-symbolic Preference Fusion</h3>
+                    <p class="subtitle is-6">Click to expand</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="method1" class="box content method-details" style="display: none; background-color: #fcfcfc;">
+            <div class="notification is-light is-info is-size-7" style="margin-bottom: 10px; padding: 0.5rem;">
+                <i class="fas fa-mouse-pointer"></i> Click on a subsection below to view its implementation code.
+            </div>
+            
+            <div class="columns is-centered">
+                <div class="column is-one-third clickable-subsection" onclick="showCode('viewer-1', 'code_1_1', '1.1 Intra-modal Fusion')">
+                    <h5 class="title is-6" style="color: #6a053c;">1.1 Intra-modal Fusion</h5>
+                    <p class="is-size-6">Crowd LLM/VLM evaluations <br>
+                            Major voting + Confidence estimation
+                    </p>
+                </div>
+                <div class="column is-one-third clickable-subsection" onclick="showCode('viewer-1', 'code_1_2', '1.2 Inter-modal Fusion')">
+                    <h5 class="title is-6" style="color: #6a053c;">1.2 Inter-modal Fusion</h5>
+                    <p class="is-size-6">Fuse VLM and LLM preferences via Probabilistic Soft Logic <br>
+                        Model confidence, conflicts, agreement, and traj contexts
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="box code-window" style="background-color: #282c34; border-radius: 8px; margin-top: 15px;">
+                <div class="columns is-vcentered" style="margin-bottom: 0;">
+                    <div class="column">
+                        <span id="viewer-1-title" style="color: #abb2bf; font-weight: bold; font-family: monospace;">Select a module above...</span>
+                    </div>
+                </div>
+                <pre style="padding: 0; background: transparent;"><code class="language-python" id="viewer-1-code" style="font-size: 0.85em; border-radius: 5px;"># Python code will appear here when you click a subsection...</code></pre>
+            </div>
+        </div>
+
+
+        <div class="box method-box" onclick="toggleMethod('method2', this)">
+            <div class="columns is-vcentered">
+                <div class="column is-1">
+                    <span class="icon is-large" style="color: #6a053c;">
+                        <i class="fas fa-plus-circle fa-2x"></i>
+                    </span>
+                </div>
+                <div class="column">
+                    <h3 class="title is-4">2 Foresight Trajectory Generation</h3>
+                    <p class="subtitle is-6">Click to expand</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="method2" class="box content method-details" style="display: none; background-color: #fcfcfc;">
+            <div class="notification is-light is-info is-size-7" style="margin-bottom: 10px; padding: 0.5rem;">
+                <i class="fas fa-mouse-pointer"></i> Click on a subsection below to view its implementation code.
+            </div>
+
+            <div class="columns is-centered">
+                <div class="column is-one-third clickable-subsection" onclick="showCode('viewer-2', 'code_2_1', 'Step 1: High-Level Motion Plan Decomposition')">
+                    <h5 class="title is-6" style="color: #6a053c;">Step 1: High-Level Motion Plan Decomposition</h5>
+                    <p class="is-size-6">
+                        Decompose the task into 3–5 discrete high-level phases. For each phase, clearly specify: <br>
+                        - Phase Name<br>
+                        - Subgoal: What condition or spatial configuration defines success at this phase?<br>
+                        - Motion Strategy: What type of movement or action is needed?<br>
+                        - Constraint Handling: How to account for physical limits, contact, kinematic constraints, etc. 
+            
+                    </p>
+                </div>
+                <div class="column is-one-third clickable-subsection" onclick="showCode('viewer-2', 'code_2_2', 'Step 2: Code Translation for Motion Primitives')">
+                    <h5 class="title is-6" style="color: #6a053c;">Step 2: Code Translation for Motion Primitives</h5>
+                    <p class="is-size-6">
+                        - Translate the high-level action plan into executable Python code. <br>
+                        - Implement each phase using structured, reusable motion primitives that can adapt to different task contexts. <br>
+                        - Key considerations: <br>
+                        • Control Logic: Implement continuous control logic for smooth transitions. <br>
+                        • Parameter Flexibility: Allow inputs of different initial conditions and motion strategy parameters.</p>
+                </div>
+                <div class="column is-one-third clickable-subsection" onclick="showCode('viewer-2', 'code_2_3', 'Step 3: Trajectory Diversification and Sampling')">
+
+                    <h5 class="title is-6" style="color: #6a053c;">Step 3: Trajectory Diversification and Sampling</h5>
+                    <p class="is-size-6">Generate {n} diverse trajectory samples by varying both: <br>
+                        - Initial Conditions: Sample from a distribution of start states (e.g., different object locations or robot poses)  <br>
+                        - Strategy Parameters: Adjust trajectory-level control parameters (e.g., approach angle, lift height, motion speed) Run the code multiple times to populate the trajectory buffer with diverse samples.</p>
+                </div>
+            </div>
+
+            <div class="box code-window" style="background-color: #282c34; border-radius: 8px; margin-top: 15px;">
+                <div class="columns is-vcentered" style="margin-bottom: 0;">
+                    <div class="column">
+                        <span id="viewer-2-title" style="color: #abb2bf; font-weight: bold; font-family: monospace;">Select a module above...</span>
+                    </div>
+                </div>
+                <pre style="padding: 0; background: transparent;"><code class="language-python" id="viewer-2-code" style="font-size: 0.85em; border-radius: 5px;"># Python code will appear here when you click a subsection...</code></pre>
+            </div>
+        </div>
+
+
+        <div class="box method-box" onclick="toggleMethod('method3', this)">
+            <div class="columns is-vcentered">
+                <div class="column is-1">
+                    <span class="icon is-large" style="color: #6a053c;">
+                        <i class="fas fa-plus-circle fa-2x"></i>
+                    </span>
+                </div>
+                <div class="column">
+                    <h3 class="title is-4">3 Hindsight Trajectory Generation</h3>
+                    <p class="subtitle is-6">Click to expand</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="method3" class="box content method-details" style="display: none; background-color: #fcfcfc;">
+            <div class="notification is-light is-info is-size-7" style="margin-bottom: 10px; padding: 0.5rem;">
+                <i class="fas fa-mouse-pointer"></i> Click on a subsection below to view its implementation code.
+            </div>
+
+            <div class="columns is-centered">
+                
+                <div class="column is-one-third clickable-subsection" onclick="showCode('viewer-3', 'code_3_1', 'Step 1: Abduction – Identify Causal Steps')">
+                    <h5 class="title is-6" style="color: #6a053c;">Step 1: Abduction – Identify Causal Steps</h5>
+                    <p class="is-size-6">- Analyze the preferred trajectory and determine which time steps are causally responsible for its being preferred. <br>
+                            - Focus on meaningful, task-relevant changes in state-action behavior that likely influenced the preference decision. <br>
+                            - You may use the provided keyframe indices as candidates, but you are not limited to them.</p>
+                </div>
+                <div class="column is-one-third clickable-subsection" onclick="showCode('viewer-3', 'code_3_2', 'Step 2: Action - Generate Counterfactual Variant')">
+                    <h5 class="title is-6" style="color: #6a053c;">Step 2: Action - Generate Counterfactual Variant</h5>
+                    <p class="is-size-6">Given: <br>
+                    - Preferred Trajectory <br>
+                    - Causal_Steps and Causal_Reasoning Your Tasks:  <br>
+                    - Select one key step from the identified causal steps.  <br>
+                    - Generate a counterfactual trajectory by minimally modifying one state-action feature at that step to reverse the trajectory's preference. <br>
+                    - Light smoothing(2–3 steps before and after) is allowed to maintain continuity. <br>
+                    - All other steps in the trajectory must remain identical to the original.</p>
+                </div>
+                <div class="column is-one-third clickable-subsection" onclick="showCode('viewer-3', 'code_3_3', 'Step 3: Prediction – Filter & Verify')">
+                    <h5 class="title is-6" style="color: #6a053c;">Step 3: Prediction – Filter & Verify</h5>
+                    <p class="is-size-6">
+                        <strong>Minimal Edit Check:</strong> Filter generated variants based on the <strong>L1 distance</strong> to ensure they satisfy the minimal deviation threshold.
+                        <br><br>
+                        <strong>Preference Verification:</strong> Feed survivors into the LLM-based intra-modal fusion module to verify the condition (&sigma;<sup>*</sup> > &sigma;<sup>cf</sup>). Validated pairs are then used to compute the <strong>Causal Auxiliary Loss</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="box code-window" style="background-color: #282c34; border-radius: 8px; margin-top: 15px;">
+                <div class="columns is-vcentered" style="margin-bottom: 0;">
+                    <div class="column">
+                        <span id="viewer-3-title" style="color: #abb2bf; font-weight: bold; font-family: monospace;">Select a module above...</span>
+                    </div>
+                </div>
+                <pre style="padding: 0; background: transparent;"><code class="language-python" id="viewer-3-code" style="font-size: 0.85em; border-radius: 5px;"># Python code will appear here when you click a subsection...</code></pre>
+            </div>
+        </div>
+
+    </div>
+</section> -->
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered" style="color: #6a053c;">Experimental Results</h2>
+        <div class="content has-text-centered">
+            <p>
+                - Better Task Performance; 
+                - Improved Synthetic Feedback Quality; 
+                - Enhanced Credit Assignment; 
+                - Better Cost-Performance Efficiency
+            </p>
+        </div>
+        <br>
+
+        <div class="columns is-centered">
+            <div class="column is-four-fifths has-text-centered">
+                <img src="assets/baseline_results.png" alt="Result 1" style="width: 100%; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <p class="is-size-6 has-text-weight-bold" style="margin-top: 10px;">
+                    Learning curves of PrefO2O and baseline methods across all tasks
+                </p>
+            </div>
+        </div>
+        <br>
+
+        <div class="columns is-centered">
+            <div class="column is-four-fifths has-text-centered">
+                <img src="assets/ablation_01.png" alt="Result 2" style="width: 100%; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <p class="is-size-6 has-text-weight-bold" style="margin-top: 10px;">
+                    Ablation study on PrefO2O.
+                </p>
+            </div>
+        </div>
+        <br>
+
+        <div class="columns is-centered">
+            <div class="column is-four-fifths has-text-centered">
+                <img src="assets/tsne_01.png" alt="Result 3" style="width: 100%; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <p class="is-size-6 has-text-weight-bold" style="margin-top: 10px;">
+                    Latent space analysis for Sweep Into as the target domain under same-embodiment (left half) and cross-embodiment (right half) transfer.
+                </p>
+            </div>
+        </div>
+        <br>
+
+        <!-- <div class="columns is-centered">
+            <div class="column is-four-fifths has-text-centered">
+                <img src="assets/result_4.png" alt="Result 4" style="width: 100%; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <p class="is-size-6 has-text-weight-bold" style="margin-top: 10px;">
+                    Reward alignment analysis, comparing the learned reward outputs of PRIMT, ablations, and baselines against ground-truth rewards.
+                </p>
+                
+            </div>
+        </div>
+        <br>
+
+        <div class="columns is-centered">
+            <div class="column is-four-fifths has-text-centered">
+                <img src="assets/result_5.png" alt="Result 5" style="width: 100%; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <p class="is-size-6 has-text-weight-bold" style="margin-top: 10px;">
+                    Cost-performance trade-off comparison of PRIMT against baseline methods
+                </p>
+            </div>
+        </div> -->
+
+    </div>
+</section>
+
+<!-- <section class="section" id="experimental-demos">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered" style="color: #6a053c;">Experimental Demos</h2>
+        <br>
+
+        <h3 class="subtitle is-4 has-text-centered" style="margin-bottom: 30px; color: #555;">
+            PRIMT can lead to more efficient robot behaviors across diverse tasks in zero-shot.
+        </h3>
+
+        <h3 class="subtitle is-4 is-italic has-text-centered" style="margin-bottom: 40px;">MetaWorld</h3>
+        <div class="columns is-centered">
+            <div class="column is-one-third">
+                <h4 class="title is-6 has-text-centered">Button Press</h4>
+                <div class="gif-carousel" id="button-press-carousel">
+                    <div class="carousel-images">
+                        <img src="assets/metaworld_button_press_primt.gif" alt="Button Press PRIMT" class="active" data-label="PRIMT">
+                        <img src="assets/metaworld_button_press_baseline.gif" alt="Button Press Baseline" data-label="Baseline">
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="prev-btn">&lt;</button>
+                        <button class="next-btn">&gt;</button>
+                    </div>
+                    <p class="gif-label has-text-centered">PRIMT</p>
+                    <div class="dots-container has-text-centered">
+                        <span class="dot active" onclick="currentSlide('button-press-carousel', 0)"></span>
+                        <span class="dot" onclick="currentSlide('button-press-carousel', 1)"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-one-third">
+                <h4 class="title is-6 has-text-centered">Door Open</h4>
+                <div class="gif-carousel" id="door-open-carousel">
+                    <div class="carousel-images">
+                        <img src="assets/metaworld_door_open_primt.gif" alt="Door Open PRIMT" class="active" data-label="PRIMT">
+                        <img src="assets/metaworld_door_open_baseline.gif" alt="Door Open Baseline" data-label="Baseline">
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="prev-btn">&lt;</button>
+                        <button class="next-btn">&gt;</button>
+                    </div>
+                    <p class="gif-label has-text-centered">PRIMT</p>
+                    <div class="dots-container has-text-centered">
+                        <span class="dot active" onclick="currentSlide('door-open-carousel', 0)"></span>
+                        <span class="dot" onclick="currentSlide('door-open-carousel', 1)"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-one-third">
+                <h4 class="title is-6 has-text-centered">Sweep Into</h4>
+                <div class="gif-carousel" id="sweep-into-carousel">
+                    <div class="carousel-images">
+                        <img src="assets/metaworld_sweep_into_primt.gif" alt="Sweep Into PRIMT" class="active" data-label="PRIMT">
+                        <img src="assets/metaworld_sweep_into_baseline.gif" alt="Sweep Into Baseline" data-label="Baseline">
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="prev-btn">&lt;</button>
+                        <button class="next-btn">&gt;</button>
+                    </div>
+                    <p class="gif-label has-text-centered">PRIMT</p>
+                    <div class="dots-container has-text-centered">
+                        <span class="dot active" onclick="currentSlide('sweep-into-carousel', 0)"></span>
+                        <span class="dot" onclick="currentSlide('sweep-into-carousel', 1)"></span>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
 
-</body>
+        <h3 class="subtitle is-4 is-italic has-text-centered" style="margin-top: 40px; margin-bottom: 40px;">ManiSkill</h3>
+        <div class="columns is-centered">
+            <div class="column is-one-third">
+                <h4 class="title is-6 has-text-centered">PegInsertionSide</h4>
+                <div class="gif-carousel" id="peg-insertion-carousel">
+                    <div class="carousel-images">
+                        <img src="assets/maniskill_peg_insertion_primt.gif" alt="PegInsertionSide PRIMT" class="active" data-label="PRIMT">
+                        <img src="assets/maniskill_peg_insertion_baseline.gif" alt="PegInsertionSide Baseline" data-label="Baseline">
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="prev-btn">&lt;</button>
+                        <button class="next-btn">&gt;</button>
+                    </div>
+                    <p class="gif-label has-text-centered">PRIMT</p>
+                    <div class="dots-container has-text-centered">
+                        <span class="dot active" onclick="currentSlide('peg-insertion-carousel', 0)"></span>
+                        <span class="dot" onclick="currentSlide('peg-insertion-carousel', 1)"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-one-third">
+                <h4 class="title is-6 has-text-centered">PickSingleYCB</h4>
+                <div class="gif-carousel" id="pick-single-carousel">
+                    <div class="carousel-images">
+                        <img src="assets/maniskill_pick_single_primt.gif" alt="PickSingleYCB PRIMT" class="active" data-label="PRIMT">
+                        <img src="assets/maniskill_pick_single_baseline.gif" alt="PickSingleYCB Baseline" data-label="Baseline">
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="prev-btn">&lt;</button>
+                        <button class="next-btn">&gt;</button>
+                    </div>
+                    <p class="gif-label has-text-centered">PRIMT</p>
+                    <div class="dots-container has-text-centered">
+                        <span class="dot active" onclick="currentSlide('pick-single-carousel', 0)"></span>
+                        <span class="dot" onclick="currentSlide('pick-single-carousel', 1)"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-one-third">
+                <h4 class="title is-6 has-text-centered">StackCube</h4>
+                <div class="gif-carousel" id="stack-cube-carousel">
+                    <div class="carousel-images">
+                        <img src="assets/maniskill_stack_cube_primt.gif" alt="StackCube PRIMT" class="active" data-label="PRIMT">
+                        <img src="assets/maniskill_stack_cube_baseline.gif" alt="StackCube Baseline" data-label="Baseline">
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="prev-btn">&lt;</button>
+                        <button class="next-btn">&gt;</button>
+                    </div>
+                    <p class="gif-label has-text-centered">PRIMT</p>
+                    <div class="dots-container has-text-centered">
+                        <span class="dot active" onclick="currentSlide('stack-cube-carousel', 0)"></span>
+                        <span class="dot" onclick="currentSlide('stack-cube-carousel', 1)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="subtitle is-4 is-italic has-text-centered" style="margin-top: 40px; margin-bottom: 40px;">DMControl</h3>
+        <div class="columns is-centered">
+            <div class="column is-one-third">
+                <h4 class="title is-6 has-text-centered">Hopper Stand</h4>
+                <div class="gif-carousel" id="hopper-stand-carousel">
+                    <div class="carousel-images">
+                        <img src="assets/dmcontrol_hopper_stand_primt.gif" alt="Hopper Stand PRIMT" class="active" data-label="PRIMT">
+                        <img src="assets/dmcontrol_hopper_stand_baseline.gif" alt="Hopper Stand Baseline" data-label="Baseline">
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="prev-btn">&lt;</button>
+                        <button class="next-btn">&gt;</button>
+                    </div>
+                    <p class="gif-label has-text-centered">PRIMT</p>
+                    <div class="dots-container has-text-centered">
+                        <span class="dot active" onclick="currentSlide('hopper-stand-carousel', 0)"></span>
+                        <span class="dot" onclick="currentSlide('hopper-stand-carousel', 1)"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="column is-one-third">
+                <h4 class="title is-6 has-text-centered">Walker Walk</h4>
+                <div class="gif-carousel" id="walker-walk-carousel">
+                    <div class="carousel-images">
+                        <img src="assets/dmcontrol_walker_walk_primt.gif" alt="Walker Walk PRIMT" class="active" data-label="PRIMT">
+                        <img src="assets/dmcontrol_walker_walk_baseline.gif" alt="Walker Walk Baseline" data-label="Baseline">
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="prev-btn">&lt;</button>
+                        <button class="next-btn">&gt;</button>
+                    </div>
+                    <p class="gif-label has-text-centered">PRIMT</p>
+                    <div class="dots-container has-text-centered">
+                        <span class="dot active" onclick="currentSlide('walker-walk-carousel', 0)"></span>
+                        <span class="dot" onclick="currentSlide('walker-walk-carousel', 1)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section> -->
+
+
+<section class="section" id="real-world-deployment">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered" style="color: #6a053c;">Real-world Deployment</h2>
+        <br>
+    <div class="publication-note has-text-centered" style="margin: 10px 0; color: #444;">
+      <em>⚠️ To ensure safety during deployment, we imposed a soft constraint: 
+      if the turning angle or acceleration exceeded a threshold, the corresponding action was discarded.</em>
+    </div>
+        <h3 class="subtitle is-4 is-italic has-text-centered" style="margin-top: 20px; margin-bottom: 40px;">
+            Cube Stack
+        </h3>
+        <div class="columns is-multiline is-centered">
+            <div class="columns is-centered">
+                <video autoplay loop muted playsinline style="width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+                    <source src="videos/cube_stack_01.MOV" type="video/mp4">
+                </video>
+                <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">PrefO2O</h4>
+            </div>
+            <!-- <div class="column is-half">
+                <video autoplay loop muted playsinline style="width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+                    <source src="assets/real_lifting_baseline_2.mp4" type="video/mp4">
+                </video>
+                <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">Baseline</h4>
+            </div>
+            <div class="column is-half">
+                <video autoplay loop muted playsinline style="width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+                    <source src="assets/real_lifting_primt_1.mp4" type="video/mp4">
+                </video>
+                <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">PRIMT</h4>
+            </div>
+            <div class="column is-half">
+                <video autoplay loop muted playsinline style="width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+                    <source src="assets/real_lifting_primt_2.mp4" type="video/mp4">
+                </video>
+                <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">PRIMT</h4>
+            </div> -->
+        </div>
+
+        <h3 class="subtitle is-4 is-italic has-text-centered" style="margin-top: 40px; margin-bottom: 40px;">
+            Pick and Place
+        </h3>
+        <div class="columns is-multiline is-centered">
+            <div class="columns is-centered">
+                <video autoplay loop muted playsinline style="width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+                    <source src="videos/pick_place_01.MOV" type="video/mp4">
+                </video>
+                <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">PrefO2O</h4>
+            </div>
+            <!-- <div class="column is-half">
+                <video autoplay loop muted playsinline style="width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+                    <source src="assets/real_stacking_baseline_2.mp4" type="video/mp4">
+                </video>
+                <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">Baseline</h4>
+            </div>
+            <div class="column is-half">
+                <video autoplay loop muted playsinline style="width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+                    <source src="assets/real_stacking_primt_1.mp4" type="video/mp4">
+                </video>
+                <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">PRIMT</h4>
+            </div>
+            <div class="column is-half">
+                <video autoplay loop muted playsinline style="width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+                    <source src="assets/real_stacking_primt_2.mp4" type="video/mp4">
+                </video>
+                <h4 class="title is-6 has-text-centered" style="margin-top: 10px;">PRIMT</h4>
+            </div> -->
+        </div>
+    </div>
+</section>
+
+
+<style>
+    /* General styles for the carousel */
+    .gif-carousel {
+        position: relative;
+        margin: 0 auto 30px auto;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        max-width: 300px; /* Adjust as needed for column width */
+    }
+
+    .gif-carousel .carousel-images {
+        display: flex;
+        width: 100%;
+        overflow: hidden; /* Hide images not currently active */
+        position: relative;
+    }
+
+    .gif-carousel .carousel-images img {
+        width: 100%;
+        display: none; /* Hide all images by default */
+        border: none; /* Remove border from carousel images */
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .gif-carousel .carousel-images img.active {
+        display: block; /* Show active image */
+    }
+
+    .gif-carousel .carousel-nav {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+        z-index: 10;
+        padding: 0 5px;
+    }
+
+    .gif-carousel .carousel-nav button {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 50%;
+        font-size: 1.2em;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+    }
+
+    .gif-carousel .carousel-nav button:hover {
+        opacity: 1;
+    }
+
+    .gif-carousel .gif-label {
+        margin-top: 10px;
+        font-weight: bold;
+        color: #333;
+        font-size: 1em;
+    }
+
+    .dots-container {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .dot {
+        height: 10px;
+        width: 10px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+        cursor: pointer;
+    }
+
+    .dot.active {
+        background-color: #007bff; /* Blue for active dot */
+    }
+
+    /* Override general image styles for carousel images */
+    .gif-carousel img {
+        margin: 0; /* Remove default margin */
+        border: none; /* Remove default border */
+        border-radius: 0; /* Remove default border-radius */
+    }
+</style>
 
 <script>
+    function showSlide(carouselId, n) {
+        let carousel = document.getElementById(carouselId);
+        let images = carousel.getElementsByClassName("carousel-images")[0].getElementsByTagName("img");
+        let dots = carousel.getElementsByClassName("dots-container")[0].getElementsByClassName("dot");
+        let label = carousel.getElementsByClassName("gif-label")[0];
 
-    timeoutIds = [];
+        // Wrap around logic
+        if (n >= images.length) { n = 0 }
+        if (n < 0) { n = images.length - 1 }
 
-    function populateDemo(imgs, num) {
-        // Get the expanded image
-        var expandImg = document.getElementById("expandedImg-" + num);
-        // Get the image text
-        var imgText = document.getElementById("imgtext-" + num);
-        var answer = document.getElementById("answer-" + num);
-
-        // Use the same src in the expanded image as the image being clicked on from the grid
-        expandImg.src = imgs.src.replace(".png", ".mp4");
-        var video = document.getElementById('demo-video-' + num);
-        // or video = $('.video-selector')[0];
-        video.pause()
-        video.load();
-        video.play();
-        video.removeAttribute('controls');
-
-        console.log(expandImg.src);
-        // Use the value of the alt attribute of the clickable image as text inside the expanded image
-        var qa = imgs.alt.split("[sep]");
-        imgText.innerHTML = qa[0];
-        answer.innerHTML = "";
-        // Show the container element (hidden with CSS)
-        expandImg.parentElement.style.display = "block";
-        for (timeoutId of timeoutIds) {
-            clearTimeout(timeoutId);
+        // Hide all images and deactivate all dots
+        for (let i = 0; i < images.length; i++) {
+            images[i].classList.remove('active');
+            dots[i].classList.remove('active');
         }
 
-        // NOTE (wliang): Modified from original to read from file instead
-        fetch(qa[1])
-            .then(response => response.text())
-            .then(contents => {
-                // Call the processData function and pass the contents as an argument
-                typeWriter(contents, 0, qa[0], num);
-            })
-            .catch(error => console.error('Error reading file:', error));
+        // Show the current image and activate its dot
+        images[n].classList.add('active');
+        dots[n].classList.add('active');
+        label.textContent = images[n].dataset.label; // Update label
+        carousel.dataset.currentSlide = n; // Store current slide index
     }
 
-    function typeWriter(txt, i, q, num) {
-        var imgText = document.getElementById("imgtext-" + num);
-        var answer = document.getElementById("answer-" + num);
-        if (imgText.innerHTML == q) {
-            for (let k = 0; k < 5; k++) {
-                if (i < txt.length) {
-                    if (txt.charAt(i) == "\\") {
-                        answer.innerHTML += "\n";
-                        i += 1;
-                    } else {
-                        answer.innerHTML += txt.charAt(i);
-                    }
-                    i++;
-                }
+    function plusSlides(carouselId, n) {
+        let carousel = document.getElementById(carouselId);
+        let current = parseInt(carousel.dataset.currentSlide || 0);
+        showSlide(carouselId, current + n);
+    }
+
+    function currentSlide(carouselId, n) {
+        showSlide(carouselId, n);
+    }
+
+    // Initialize all carousels
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('.gif-carousel').forEach(carousel => {
+            carousel.dataset.currentSlide = 0; // Initialize current slide for each carousel
+            showSlide(carousel.id, 0); // Show the first slide for each carousel
+            
+            // Add event listeners for navigation buttons
+            carousel.querySelector('.prev-btn').addEventListener('click', () => plusSlides(carousel.id, -1));
+            carousel.querySelector('.next-btn').addEventListener('click', () => plusSlides(carousel.id, 1));
+        });
+    });
+</script>
+
+<style>
+    /* Styling for the main method clickable boxes */
+    .method-box {
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 1px solid transparent;
+        margin-bottom: 0.5rem !important;
+    }
+    .method-box:hover {
+        border-color: #6a053c;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .method-details {
+        margin-bottom: 1.5rem !important;
+        border-top: 3px solid #6a053c;
+    }
+
+    /* Styling for the Sub-subsections */
+    .clickable-subsection {
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        border-radius: 6px;
+        padding: 10px;
+    }
+    .clickable-subsection:hover {
+        background-color: #eef3f6; /* Light highlight on hover */
+    }
+    .clickable-subsection:active {
+        background-color: #dfe7ec;
+    }
+</style>
+
+<script>
+    // 1. Toggle the main Method sections
+    function toggleMethod(id, element) {
+        var content = document.getElementById(id);
+        var icon = element.querySelector('.fa-plus-circle, .fa-minus-circle');
+        
+        if (content.style.display === "block") {
+            content.style.display = "none";
+            if(icon) {
+                icon.classList.remove('fa-minus-circle');
+                icon.classList.add('fa-plus-circle');
             }
-            hljs.highlightAll();
-            timeoutIds.push(setTimeout(typeWriter, 1, txt, i, q, num));
+        } else {
+            content.style.display = "block";
+            if(icon) {
+                icon.classList.remove('fa-plus-circle');
+                icon.classList.add('fa-minus-circle');
+            }
         }
     }
 
+    // 2. Dictionary of Python Code
+    // PASTE YOUR ACTUAL PYTHON CODE INSIDE THESE STRINGS
+    const codeRepository = {
+        'code_1_1': `# 1.1 Intra-modal Fusion
+    (1) query LLM or VLM multiple times with randomly permuted trajectory orderings
+
+    (2) get final intra-modal labels via major voting
+    # Input: P: set of K predictions from modality M, where P[k] contains (label_k, conf_k); alpha: balancing hyperparameter;
+    # Output: final_label, final_conf: The aggregated preference label and calibrated confidence score;
+    # set votes = { -1: 0, 0: 0, 1: 0 }
+
+    for k = 1 to K do
+        l = P[k].label_k
+        votes[l] = votes[l] + 1
+    end for
+    final_label = argmax(votes)
+
+    (3) calculate label confidence
+    set sum_conf = 0, N = 0
+    for k = 1 to K do
+        if P[k].label_k == final_label then
+            sum_conf = sum_conf + P[k].conf_k
+            N = N + 1
+        else
+            continue
+        end if
+    end for
+
+    // Calculate Average Confidence C_bar and Consistency Ratio C_dot
+    if N > 0 then
+        C_bar = sum_conf / N
+    else
+        C_bar = 0
+    end if
+    C_dot = N / K
+
+    // Final Confidence Calculation
+    final_conf = alpha * C_bar + (1 - alpha) * C_dot
+    return final_label, final_conf
+`,
+
+        'code_1_2': `# 1.2 Inter-modal Fusion
+    Defined Rules in PSL:
+
+    (1) Agreement Rule
+    for y in Labels:
+        for M in {VLM_Res, LLM_Res}:
+            // Distance = Body_Sum - Head - (Num_Body_Atoms - 1)
+            dist = IsAgree[y] + M.conf - Y[y] - 1
+            energy += w.agree * max(0, dist)^p
+
+    (2) Conflict Resolution Rules
+    for y in Labels:
+        // VLM Rule: !IsAgree ^ VLMLabel ^ ConfHigh(VLM) ^ VDHigh -> FinalLabel(y)
+        vlm_hit = 1.0 if VLM_Res.label == y else 0.0
+        dist_v = (1-IsAgree[y]) + vlm_hit + VLM_Res.conf + VDHigh - Y[y] - 3
+        energy += w.conflict * max(0, dist_v)^p
+        
+        // LLM Rule: !IsAgree ^ LLMLabel ^ ConfHigh(LLM) ^ TDHigh -> FinalLabel(y)
+        llm_hit = 1.0 if LLM_Res.label == y else 0.0
+        dist_l = (1-IsAgree[y]) + llm_hit + LLM_Res.conf + TDHigh - Y[y] - 3
+        energy += w.conflict * max(0, dist_l)^p
+
+    (3) Indecision Rule
+    dist_i = (1-VLM_Res.conf) + (1-LLM_Res.conf) - Y[-1] - 1
+    energy += w.indecision * max(0, dist_i)^p
+
+    (4) Online Convex Optimization
+    Y_star = argmin(Calculate_Energy(Y))
+         subject to: sum(Y) == 1  and  0 <= Y <= 1
+    return argmax(Y_star)
+`,
+
+
+
+        // --- Method 2 Placeholders ---
+        'code_2_1': `# High-Level Motion Plan: Door Opening
+# -------------------------------------------------------------------------
+# The task is decomposed into 4 sequential phases to ensure safe interaction.
+#
+# Phase 1: Approach
+# -----------------
+# - Subgoal: Position the gripper directly above the door handle with a safety margin.
+# - Motion Strategy: Linear interpolation (lerp) from current TCP to (obj_pos + approach_z).
+# - Constraints: Gripper must remain fully open (1.0). Torque set to 0.
+#
+# Phase 2: Grasp
+# --------------
+# - Subgoal: Establish a secure physical connection with the door handle.
+# - Motion Strategy: Descend vertically to object center -> Actuate gripper to close (0.0).
+# - Constraints: Apply specified 'grip_force' torque to ensure contact stability.
+#
+# Phase 3: Transport
+# -------------------------
+# - Subgoal: Unlatch and swing the door open to the target angle.
+# - Motion Strategy: Move TCP along a parameterized trajectory vector [pull_dx, pull_dy, lift_z].
+# - Constraints: Maintain closed grip (0.0) and constant torque throughout the pulling motion.
+#
+# Phase 4: Release
+# --------------
+# - Subgoal: Disengage from the door without disturbing its final state.
+# - Motion Strategy: Hold final position -> Actuate gripper to open (1.0).
+# - Constraints: Zero torque during release to prevent jerking the door.`,
+
+        'code_2_2': `# Example Python code for Door-Open foresight trajectory generation \n 
+
+def generate_trajectory(init_state, strategy_config, env_params):
+    """
+    Generate a full 100-step trajectory for a door-open task in 15D format.
+    The trajectory is composed of 4 motion phases:
+        1. Approach: Move above the door handle.
+        2. Grasp: Lower gripper and close.
+        3. Transport: Pull and slightly lift the handle.
+        4. Release: Stop pulling and open gripper.
+
+    Args:
+    init_state (dict): Initial values, including:
+        'tcp': (3,) TCP position
+        'grip': float, initial gripper open level (0 or 1)
+        'obj_pos': (3,) object (handle) position
+        'obj_ori': (4,) object orientation (quaternion)
+    strategy_config (dict): Motion parameters:
+        'approach_z': height to approach from above
+        'pull_dx': pull distance along x-axis
+        'pull_dy': pull distance along y-axis
+        'lift_z': small vertical lift
+        'grip_force': torque level when gripping
+    env_params (dict): Optional task-related constants (unused here)
+
+    Returns:
+        trajectory (np.ndarray): Array of shape (100, 15)
+    """    
+    trajectory = []
+
+    # === Phase 1: Approach ===
+    traj_phase1 = phase_approach(
+        start=init_state['tcp'],
+        goal=np.array([*init_state['obj_pos'][:2],
+        strategy_config["approach_z"]]),
+        steps=25,
+        grip=1.0,
+        torque=0.0,
+        obj_pos=init_state['obj_pos'],
+        obj_ori=init_state['obj_ori']
+    )
+    trajectory += traj_phase1
+
+    # === Phase 2: Grasp ===
+    traj_phase2 = phase_grasp(
+        pos=init_state['obj_pos'],
+        steps=10,
+        grip_start=1.0,
+        grip_end=0.0,
+        torque=strategy_config["grip_force"],
+        obj_ori=init_state['obj_ori']
+    )
+    trajectory += traj_phase2
+
+    # === Phase 3: Transport ===
+    pull_target = init_state['obj_pos'] + np.array([
+        strategy_config["pull_dx"],
+        strategy_config["pull_dy"],
+        strategy_config["lift_z"]
+    ])
+    traj_phase3 = phase_transport(
+        start=init_state['obj_pos'],
+        goal=pull_target,
+        steps=40,
+        grip=0.0,
+        torque=strategy_config["grip_force"],
+        obj_ori=init_state['obj_ori']
+    )
+    trajectory += traj_phase3
+
+    # === Phase 4: Release ===
+    traj_phase4 = phase_release(
+        pos=pull_target,
+        steps=25,
+        grip_start=0.0,
+        grip_end=1.0,
+        torque=0.0,
+        obj_ori=init_state['obj_ori']
+    )
+    trajectory += traj_phase4
+
+    return np.stack(trajectory, axis=0) # (100, 15)
+
+def phase_approach(start, goal, steps, grip, torque, obj_pos, obj_ori):
+    """ Move from start to goal with open gripper. """
+    return linear_segment(start, goal, steps, grip, torque, obj_pos, obj_ori)
+
+def phase_grasp(pos, steps, grip_start, grip_end, torque, obj_ori):
+    """ Stay at position and close gripper smoothly. """
+    traj = []
+    for i in range(steps):
+        alpha = i / (steps - 1)
+        grip = (1 - alpha) * grip_start + alpha * grip_end
+        tcp = pos.copy()
+        traj.append(build_step(tcp, grip, pos, obj_ori, delta=np.zeros(3), torque=torque))
+    return traj
+
+def phase_transport(start, goal, steps, grip, torque, obj_ori):
+    """ Pull the door handle while holding it. """
+    return linear_segment(start, goal, steps, grip, torque, goal, obj_ori)
+
+def phase_release(pos, steps, grip_start, grip_end, torque,
+    obj_ori):
+    """ Stay in place and open the gripper. """
+    return phase_grasp(pos, steps, grip_start, grip_end, torque, obj_ori)
+
+def linear_segment(start, goal, steps, grip, torque, obj_pos, obj_ori):
+    """
+    Linearly interpolate TCP between start and goal,
+    calculate delta at each step, and fill full 15D vector.
+    """
+    traj = []
+    for i in range(steps):
+        alpha = i / (steps - 1)
+        tcp = (1 - alpha) * start + alpha * goal
+        delta = tcp - traj[-1][0:3] if traj else np.zeros(3)
+        traj.append(build_step(tcp, grip, obj_pos, obj_ori, delta, torque))
+    return traj
+
+def build_step(tcp, grip, obj_pos, obj_ori, delta, torque):
+    """
+    Create one 15D timestep with full trajectory format:
+    [0:3] TCP pos, [3] grip, [4:7] obj pos, [7:11] obj ori,
+    [11:14] delta TCP, [14] torque
+    """
+    step = np.zeros(15)
+    step[0:3] = tcp
+    step[3] = grip
+    step[4:7] = obj_pos
+    step[7:11] = obj_ori
+    step[11:14] = delta
+    step[14] = torque
+    return step
+    `,
+        'code_2_3': `# Step 3: Trajectory Diversification and Sampling
+
+def sample_diverse_trajectories(n_samples=50):
+    """
+    Generates a dataset of diverse door-opening trajectories by
+    randomizing initial conditions and strategy parameters.
+    """
+    dataset = []
+
+    # Define nominal object pose (e.g., door handle location)
+    base_obj_pos = np.array([0.5, 0.0, 0.5]) 
+    base_obj_ori = np.array([0.0, 0.0, 0.0, 1.0])
+
+    for i in range(n_samples):
+        # 1. Vary Initial Conditions (Spatial Diversity)
+        # Add random noise (+/- 2cm) to the object position to simulate 
+        # perception noise or different environment setups.
+        pos_noise = np.random.uniform(-0.02, 0.02, size=3)
+        
+        init_state = {
+            'tcp': np.array([0.0, 0.0, 0.0]), # Robot start position
+            'grip': 0.0,
+            'obj_pos': base_obj_pos + pos_noise,
+            'obj_ori': base_obj_ori
+        }
+
+        # 2. Vary Strategy Parameters (Behavioral Diversity)
+        # Randomize how the robot approaches and pulls the door.
+        # This covers different valid ways to solve the same task.
+        strategy_config = {
+            # Approach from 15cm to 25cm above the handle
+            'approach_z': np.random.uniform(0.15, 0.25),
+            
+            # Pull backwards 20cm to 35cm
+            'pull_dx': np.random.uniform(-0.20, -0.35),
+            
+            # Lateral pull variance (imperfect straight pull)
+            'pull_dy': np.random.uniform(-0.05, 0.05),
+            
+            # Lift the handle slightly (0 to 5cm) during pull
+            'lift_z': np.random.uniform(0.0, 0.05),
+            
+            'grip_force': 10.0
+        }
+
+        # 3. Generate & Store
+        # Call the primitive-based generator from Step 2
+        try:
+            # generate_trajectory is the function defined in Step 2
+            trajectory = generate_trajectory(init_state, strategy_config, env_params={})
+
+            # Format entry for the trajectory buffer
+            sample = {
+                "traj_id": f"fore_{i:03d}",
+                "init_state": init_state,
+                "strategy_config": strategy_config,
+                "trajectory": trajectory # Shape: (100, 15)
+            }
+            dataset.append(sample)
+            
+        except Exception as e:
+            print(f"Generation failed for sample {i}: {e}")
+
+    return dataset`,
+
+        // --- Method 3 Placeholders ---
+
+        'code_3_1': `# Step 1: Abduction – Identify Causal Steps \n
+# Given inputs:
+1. Task description: {task_description}
+2. Trajectory Inputs: {text(1), text(2)}
+3. Preferred Trajectory: {trj_preferred}
+4. Keyframe Indices: {kvist(1), kvist(2)}
+5. Preference Reasoning: {LLM_reasoning, VLM_reasoning}
+
+Reply Format
+Causal_Steps: [list of identified step indices in the preferred trajectory]
+Causal_Reasoning: [brief explanation of why these steps are critical for the preference judgment]`,
+
+        'code_3_2': `# Step 2: Action - Generate Counterfactual Variant \n
+Reply Format
+Edited_Step: [index of the modified step]
+Edit_Description: [brief natural language description of the change]
+Counterfactual_Trajectory: [text-format trajectory description consistent with the original input format]`,
+        
+        'code_3_3': `# Step 3: Prediction – Filter by L1 Distance & Verify Preference
+
+def process_counterfactual_step(traj_pref, traj_cf, mask, oracle, l1_threshold=0.1):
+    """
+    Filters and verifies counterfactuals before using them for training.
+    
+    traj_pref:    Original preferred trajectory
+    traj_cf:      Generated counterfactual variant
+    mask:         1 for edited steps, 0 for unchanged steps
+    l1_threshold: Max allowed deviation for "minimal edit"
+    """
+
+    # 1. MINIMAL EDIT CHECK (L1 Distance Filter)
+    # "Filter generated counterfactuals based on the L1 distance... ensuring a small deviation."
+    l1_distance = sum(abs(traj_pref - traj_cf))
+
+    if l1_distance > l1_threshold:
+        return None # Discard: Deviation too large (Violates minimal edit principle)
+
+    # 2. PREFERENCE VERIFICATION (Prediction)
+    # "Verify whether the counterfactual is sub-preferred (sigma* > sigma_cf)."
+    sigma_star = oracle.score(traj_pref)
+    sigma_cf   = oracle.score(traj_cf)
+
+    if sigma_star > sigma_cf:
+        
+        # 3. COMPUTE CAUSAL AUXILIARY LOSS (If validated)
+        # The pair is valid. Compute loss using the Reward Model (r_psi).
+        r_star = reward_model(traj_pref)
+        r_cf   = reward_model(traj_cf)
+        
+        # Term I: Causal Contrast at edited steps
+        contrast_loss = sum(mask * log(1 + exp(r_cf - r_star)))
+        
+        # Term II: Consistency at unchanged steps
+        consistency_loss = sum((1 - mask) * (r_star - r_cf)**2)
+        
+        return contrast_loss + consistency_loss
+
+    else:
+        return None # Discard: Preference did not flip (Not a valid counterfactual)`
+    };
+
+    // 3. Function to display the code
+    function showCode(viewerId, codeKey, titleText) {
+        // Find the specific viewer elements
+        const titleEl = document.getElementById(viewerId + '-title');
+        const codeEl = document.getElementById(viewerId + '-code');
+        
+        // Update Title
+        if(titleEl) titleEl.innerText = "Viewing: " + titleText;
+
+        // Update Code
+        const rawCode = codeRepository[codeKey] || "# Code not available yet.";
+        codeEl.textContent = rawCode;
+
+        // Remove previous highlighting attributes to ensure fresh highlight
+        codeEl.removeAttribute('data-highlighted');
+        codeEl.className = 'language-python';
+
+        // Trigger Highlight.js
+        hljs.highlightElement(codeEl);
+    }
 </script>
 
 </html>
