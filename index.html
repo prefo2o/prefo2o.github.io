@@ -8,25 +8,27 @@
 
     <meta name="description" content="PrefO2O learns a task-invariant latent preference space from offline source-task preferences and transfers it to unseen target tasks for zero-shot preference-based reinforcement learning.">
 
+    <!-- Social / link preview cards -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://prefo2o.github.io/">
+    <meta property="og:title" content="PrefO2O: Offline-to-Online Latent Preference Transfer for Zero-Shot Preference-Based RL">
+    <meta property="og:description" content="Zero-shot preference-based RL on unseen tasks — no target-task human feedback, even across robot embodiments.">
+    <meta property="og:image" content="https://prefo2o.github.io/assets/concept_01.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://prefo2o.github.io/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#129302;</text></svg>">
+
     <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans" rel="stylesheet">
 
     <link rel="stylesheet" href="./static/css/bulma.min.css">
-    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
     <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="./static/css/academicons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
     <link rel="stylesheet" href="./static/css/index.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="./static/js/fontawesome.all.min.js"></script>
-    <script src="./static/js/bulma-carousel.min.js"></script>
-    <script src="./static/js/bulma-slider.min.js"></script>
-    <script src="./static/js/index.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function () { hljs.highlightAll(); });</script>
 
     <style>
         :root {
@@ -138,6 +140,11 @@
             margin: 16px 0 28px 0;
             font-size: 0.95rem;
         }
+        .publication-links a[aria-disabled="true"] {
+            opacity: 0.5;
+            pointer-events: none;
+            cursor: default;
+        }
         @media (max-width: 768px) {
             .hero-body { padding: 2rem 1rem; }
             .publication-title { font-size: 1.6rem !important; }
@@ -153,7 +160,6 @@
             <div class="container is-max-desktop">
                 <div class="columns is-centered">
                     <div class="column has-text-centered">
-                        <!-- CHANGED: 主标题原本副标题部分用了 var(--accent) inline，现在和上半行一起由 CSS 统一着色，移除 inline span 颜色避免不一致 -->
                         <h1 class="title is-1 publication-title">
                             Offline-to-Online Latent Preference Transfer<br>
                             for Zero-Shot Preference-Based Reinforcement Learning
@@ -296,7 +302,7 @@
             </div>
 
             <div class="figure-card">
-                <img src="assets/baseline_results.png" alt="Learning curves comparing PrefO2O to baselines"
+                <img src="assets/baselines.png" alt="Learning curves comparing PrefO2O to baselines"
                      style="width: 100%; border-radius: 4px;" loading="lazy">
                 <p class="figure-caption">
                     Learning curves of PrefO2O and baseline methods across all tasks under both same-embodiment
@@ -306,7 +312,7 @@
             </div>
 
             <div class="figure-card">
-                <img src="assets/ablation_01.png" alt="Ablation study"
+                <img src="assets/ablation.png" alt="Ablation study"
                      style="width: 100%; border-radius: 4px;" loading="lazy">
                 <p class="figure-caption">
                     Ablation study on PrefO2O. Removing the latent space causes the largest performance drop,
@@ -315,8 +321,8 @@
                 </p>
             </div>
 
-            <!-- <div class="figure-card">
-                <img src="assets/tsne_01.png" alt="t-SNE analysis of the learned latent space"
+            <div class="figure-card">
+                <img src="assets/cross_tsne.png" alt="t-SNE analysis of the learned latent space"
                      style="width: 100%; border-radius: 4px;" loading="lazy">
                 <p class="figure-caption">
                     Latent space analysis for Sweep Into as the target domain under same-embodiment (left half)
@@ -324,7 +330,7 @@
                     distributions with a clear preference partition, while the zero-shot baseline remains
                     domain- and embodiment-clustered.
                 </p>
-            </div> -->
+            </div>
         </div>
     </section>
 
@@ -350,7 +356,7 @@
             <div class="video-row">
                 <div class="video-card">
                     <video autoplay loop muted playsinline controls preload="metadata">
-                        <source src="videos/cube_stack_01.MOV" type="video/quicktime">
+                        <source src="videos/cube_stack_01.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-label">PrefO2O (ours)</div>
@@ -363,7 +369,7 @@
             <div class="video-row">
                 <div class="video-card">
                     <video autoplay loop muted playsinline controls preload="metadata">
-                        <source src="videos/pick_place_01.MOV" type="video/quicktime">
+                        <source src="videos/pick_place_01.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-label">PrefO2O (ours)</div>
