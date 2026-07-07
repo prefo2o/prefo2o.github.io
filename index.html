@@ -274,6 +274,20 @@
                     target-task human feedback.
                 </p>
             </div>
+            
+
+            <div class="figure-card">
+                <img src="assets/O2O_Frame.png" alt="Overview of PrefO2O"
+                     style="width: 100%; border-radius: 4px;" loading="lazy">
+                <p class="figure-caption">
+                    The offline phase jointly learns a trajectory encoder, a preference VAE, 
+                    and a meta reward model from source-task preference data. In the online phase, 
+                    the pretrained encoder and reward model warm-start target-task PbRL, 
+                    and the frozen preference VAE serves as a stable reference for OT-based alignment. 
+                    Source labels are propagated to target trajectory pairs through the transport matrix, 
+                    producing pseudo-preference labels with OOD-aware confidence weights for online reward learning and policy optimization.
+                </p>
+            </div>
         </div>
     </section>
 
