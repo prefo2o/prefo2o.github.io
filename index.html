@@ -2,417 +2,335 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PrefO2O: Offline-to-Online Latent Preference Transfer for Zero-Shot Preference-Based Reinforcement Learning</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrefO2O: Zero-Shot Preference-Based Reinforcement Learning</title>
+  <meta name="description" content="PrefO2O transfers latent preference structures from offline source-task feedback to unseen target tasks for zero-shot preference-based reinforcement learning.">
 
-    <meta name="description" content="PrefO2O learns a task-invariant latent preference space from offline source-task preferences and transfers it to unseen target tasks for zero-shot preference-based reinforcement learning.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prefo2o.github.io/">
+  <meta property="og:title" content="PrefO2O: Zero-Shot Preference-Based Reinforcement Learning">
+  <meta property="og:description" content="Offline-to-online latent preference transfer for zero-shot PbRL without target-task human feedback.">
+  <meta property="og:image" content="https://prefo2o.github.io/assets/concept.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://prefo2o.github.io/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' rx='18' fill='%23172a2a'/%3E%3Ctext x='48' y='59' text-anchor='middle' font-size='32' font-family='Arial' font-weight='700' fill='%23ffffff'%3EP2O%3C/text%3E%3C/svg%3E">
 
-    <!-- Social / link preview cards -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://prefo2o.github.io/">
-    <meta property="og:title" content="PrefO2O: Offline-to-Online Latent Preference Transfer for Zero-Shot Preference-Based RL">
-    <meta property="og:description" content="Zero-shot preference-based RL on unseen tasks — no target-task human feedback, even across robot embodiments.">
-    <meta property="og:image" content="https://prefo2o.github.io/assets/concept_01.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://prefo2o.github.io/">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#129302;</text></svg>">
-
-    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans" rel="stylesheet">
-
-    <link rel="stylesheet" href="./static/css/bulma.min.css">
-    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="./static/css/index.css">
-
-    <script defer src="./static/js/fontawesome.all.min.js"></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-    <script>document.addEventListener('DOMContentLoaded', function () { hljs.highlightAll(); });</script>
-
-    <style>
-        :root {
-            --accent: #6a053c;
-            --accent-soft: #f4e8ee;
-            --ink: #1f1f1f;
-            --muted: #555;
-        }
-        body { color: var(--ink); }
-
-        .publication-title,
-        .publication-title span,
-        h1.title.is-1,
-        h2.title.is-3,
-        h3.subtitle.is-4 {
-            color: var(--accent) !important;
-        }
-
-        .section-title {
-            color: var(--accent);
-            border-bottom: 2px solid var(--accent-soft);
-            display: inline-block;
-            padding-bottom: 6px;
-            margin-bottom: 1.5rem;
-        }
-        .tldr {
-            background: var(--accent-soft);
-            border-left: 4px solid var(--accent);
-            padding: 14px 18px;
-            border-radius: 4px;
-            font-size: 1.05rem;
-            margin: 18px auto 0 auto;
-            max-width: 760px;
-            text-align: left;
-        }
-        .figure-card {
-            background: #fff;
-            border-radius: 6px;
-            padding: 14px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            margin-bottom: 30px;
-        }
-        .figure-caption {
-            font-size: 0.95rem;
-            color: var(--muted);
-            margin-top: 10px;
-            text-align: center;
-        }
-        .result-highlights {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 14px;
-            margin: 20px 0 30px 0;
-        }
-        .result-highlight {
-            background: #fff;
-            border: 1px solid #eee;
-            border-top: 3px solid var(--accent);
-            border-radius: 4px;
-            padding: 14px 16px;
-        }
-        .result-highlight .num {
-            color: var(--accent);
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-        .result-highlight .label {
-            font-size: 0.9rem;
-            color: var(--muted);
-            margin-top: 4px;
-        }
-        .video-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-        .video-card {
-            flex: 1 1 320px;
-            max-width: 480px;
-        }
-        .video-card video {
-            width: 100%;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            background: #000;
-        }
-        .video-label {
-            text-align: center;
-            margin-top: 8px;
-            font-weight: 600;
-            color: var(--ink);
-        }
-        .bibtex-block {
-            background: #fafafa;
-            border: 1px solid #eee;
-            border-radius: 4px;
-            padding: 18px;
-            font-size: 0.9rem;
-            overflow-x: auto;
-        }
-        .safety-note {
-            background: #fff8e1;
-            border-left: 4px solid #f0b400;
-            padding: 12px 16px;
-            border-radius: 4px;
-            color: #5b4500;
-            margin: 16px 0 28px 0;
-            font-size: 0.95rem;
-        }
-        .publication-links a[aria-disabled="true"] {
-            opacity: 0.5;
-            pointer-events: none;
-            cursor: default;
-        }
-        @media (max-width: 768px) {
-            .hero-body { padding: 2rem 1rem; }
-            .publication-title { font-size: 1.6rem !important; }
-        }
-    </style>
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
 </head>
 
 <body>
+  <header class="site-header">
+    <a class="site-brand" href="#top" aria-label="PrefO2O home">
+      <span class="brand-mark">P2O</span>
+      <span>PrefO2O</span>
+    </a>
+    <nav class="site-nav" aria-label="Page navigation">
+      <a href="#method">Method</a>
+      <a href="#results">Results</a>
+      <a href="#real-world">Robot</a>
+      <a href="#bibtex">BibTeX</a>
+    </nav>
+  </header>
 
+  <main id="top">
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-kicker">Offline-to-online latent preference transfer</div>
+        <h1>PrefO2O: Zero-Shot Preference-Based Reinforcement Learning via Offline-to-Online Latent Preference Transfer</h1>
+        <p class="hero-lede">
+          PrefO2O learns a task-invariant latent preference space from a small set of offline source-task preferences,
+          then transfers reward priors and confidence-weighted pseudo-preferences to unseen target tasks without
+          collecting target-task human feedback.
+        </p>
 
-    <section class="hero">
-        <div class="hero-body">
-            <div class="container is-max-desktop">
-                <div class="columns is-centered">
-                    <div class="column has-text-centered">
-                        <h1 class="title is-1 publication-title">
-                            Offline-to-Online Latent Preference Transfer<br>
-                            for Zero-Shot Preference-Based Reinforcement Learning
-                        </h1>
-
-                        <div class="is-size-5 publication-authors">
-                            <span class="author-block">
-                                Anonymous Author<sup>1,&dagger;</sup>
-                            </span>
-                        </div>
-
-                        <div class="is-size-6 publication-authors" style="color: var(--muted); margin-top: 6px;">
-                            <span class="author-block"><sup>1</sup>Affiliation withheld for double-anonymous review.</span>
-                        </div>
-
-                        <div class="tldr">
-                            <strong>TL;DR.</strong> PrefO2O learns a task-invariant latent preference space from
-                            offline source-task preferences, then transfers it to unseen target tasks via
-                            confidence-weighted optimal transport — enabling zero-shot preference-based RL
-                            with <em>no</em> human feedback on the target task, even across robot embodiments.
-                        </div>
-
-                        <div class="publication-links" style="margin-top: 28px;">
-                            <span class="link-block">
-                                <a target="_blank" rel="noopener" href="#"
-                                   class="external-link button is-normal is-rounded is-dark" aria-disabled="true">
-                                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                                    <span>Paper</span>
-                                </a>
-                            </span>
-                            <span class="link-block">
-                                <a target="_blank" rel="noopener" href="#"
-                                   class="external-link button is-normal is-rounded is-dark" aria-disabled="true">
-                                    <span class="icon"><i class="fas fa-image"></i></span>
-                                    <span>Poster</span>
-                                </a>
-                            </span>
-                            <span class="link-block">
-                                <a target="_blank" rel="noopener" href="#"
-                                   class="external-link button is-normal is-rounded is-dark" aria-disabled="true">
-                                    <span class="icon"><i class="fas fa-chalkboard-teacher"></i></span>
-                                    <span>Presentation</span>
-                                </a>
-                            </span>
-                            <span class="link-block">
-                                <a target="_blank" rel="noopener" href="https://github.com/prefo2o/PrefO2O"
-                                   class="external-link button is-normal is-rounded is-dark">
-                                    <span class="icon"><i class="fab fa-github"></i></span>
-                                    <span>Code</span>
-                                </a>
-                            </span>
-                            <span class="link-block">
-                                <a href="#bibtex"
-                                   class="external-link button is-normal is-rounded is-dark">
-                                    <span class="icon"><i class="fas fa-quote-left"></i></span>
-                                    <span>BibTeX</span>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="publication-meta">
+          <span>Anonymous Author(s)</span>
+          <span>Under review</span>
+          <span>Double-anonymous version</span>
         </div>
+
+        <div class="hero-actions" aria-label="Project links">
+          <a class="action-button primary" target="_blank" rel="noopener" href="https://arxiv.org/">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span>
+            <span>Paper</span>
+          </a>
+          <a class="action-button" target="_blank" rel="noopener" href="https://github.com/prefo2o/PrefO2O">
+            <span class="icon"><i class="fab fa-github"></i></span>
+            <span>Code</span>
+          </a>
+          <a class="action-button" href="#bibtex">
+            <span class="icon"><i class="fas fa-quote-left"></i></span>
+            <span>BibTeX</span>
+          </a>
+        </div>
+
+        <figure class="hero-visual">
+          <img src="./assets/concept.png" alt="Conceptual overview of PrefO2O latent preference transfer">
+          <figcaption>
+            Source-task preferences are distilled into a shared preference manifold, then queried online to guide
+            unseen target tasks through transferable priors and pseudo-preference supervision.
+          </figcaption>
+        </figure>
+
+        <div class="hero-metrics" aria-label="Key facts">
+          <div>
+            <strong>0</strong>
+            <span>target-task labels</span>
+          </div>
+          <div>
+            <strong>100</strong>
+            <span>source labels per task</span>
+          </div>
+          <div>
+            <strong>8</strong>
+            <span>target benchmarks</span>
+          </div>
+          <div>
+            <strong>7/10</strong>
+            <span>real Cube Stacking</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-
-    <section class="section">
-        <div class="container is-max-desktop">
-            <div class="columns is-centered">
-                <div class="column">
-                    <h2 class="title is-3 has-text-centered section-title">Abstract</h2>
-                    <div class="content has-text-justified">
-                        <p style="font-size: 1.1rem; line-height: 1.7;">
-                            Preference-based reinforcement learning (PbRL) has emerged as a promising paradigm
-                            for learning robot behaviors aligned with human intent. However, its scalability is
-                            fundamentally limited by the need to collect expensive human preference labels for
-                            every new task. In this work, we present <strong>PrefO2O</strong>, an
-                            offline-to-online latent preference transfer framework that enables zero-shot PbRL
-                            on unseen target tasks without requiring any human feedback. Our core idea is to
-                            learn a task-invariant latent preference space from offline preference data on
-                            source tasks, where abstract and generalizable preference representations are
-                            disentangled from task-specific variations. This learned manifold allows PrefO2O
-                            to transfer preference structures and reward priors to new tasks robustly under
-                            distribution shift, with confidence-weighted optimal transport alignment generating
-                            reliable pseudo-preference supervision for online PbRL. Extensive experiments on
-                            robotic manipulation and locomotion benchmarks demonstrate that PrefO2O
-                            substantially outperforms existing preference-transfer baselines and matches or
-                            exceeds PbRL methods trained with real human feedback, while generalizing across
-                            multi-to-one and one-to-one transfer settings as well as across different robot
-                            embodiments.
-                        </p>
-                    </div>
-                </div>
-            </div>
+    <section class="section-block problem-section">
+      <div class="container two-column">
+        <div>
+          <p class="section-eyebrow">Motivation</p>
+          <h2>Preference feedback should not restart from zero for every robot task.</h2>
         </div>
+        <div class="copy-stack">
+          <p>
+            Preference-based RL aligns robot behavior with human intent, but most methods still require fresh
+            preference labels whenever the task changes. That per-task annotation cost becomes a bottleneck for
+            practical robotic deployment.
+          </p>
+          <p>
+            PrefO2O treats preference as a transferable structure. Instead of aligning raw trajectories, it learns a
+            latent space where source and target trajectory pairs can be compared by shared behavioral qualities such
+            as progress, directness, smoothness, and stable interaction.
+          </p>
+        </div>
+      </div>
     </section>
 
-
-    <section class="section" style="background: #fafafa;">
-        <div class="container is-max-desktop">
-            <h2 class="title is-3 has-text-centered section-title">Framework Overview</h2>
-            <div class="figure-card">
-                <img src="assets/concept.png"
-                     alt="Conceptual illustration of the PrefO2O framework"
-                     style="width: 100%; border-radius: 4px;"
-                     loading="lazy">
-                <p class="figure-caption">
-                    PrefO2O infers a task-invariant latent preference space from offline preference data
-                    across source tasks, capturing shared preference structures beyond task-specific
-                    variations. On an unseen target task, the learned space enables robust preference prior
-                    transfer and pseudo-preference supervision for zero-shot online PbRL — without any
-                    target-task human feedback.
-                </p>
-            </div>
-            
-
-            <div class="figure-card">
-                <img src="assets/O2O_Frame.png" alt="Overview of PrefO2O"
-                     style="width: 100%; border-radius: 4px;" loading="lazy">
-                <p class="figure-caption">
-                    The offline phase jointly learns a trajectory encoder, a preference VAE, 
-                    and a meta reward model from source-task preference data. In the online phase, 
-                    the pretrained encoder and reward model warm-start target-task PbRL, 
-                    and the frozen preference VAE serves as a stable reference for OT-based alignment. 
-                    Source labels are propagated to target trajectory pairs through the transport matrix, 
-                    producing pseudo-preference labels with OOD-aware confidence weights for online reward learning and policy optimization.
-                </p>
-            </div>
+    <section class="section-block" id="method">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-eyebrow">Method</p>
+          <h2>Learn the preference manifold offline, reuse it online.</h2>
+          <p>
+            PrefO2O combines a trajectory encoder, preference VAE, and meta reward model in the source domain,
+            then performs OOD-aware optimal transport in the learned preference space during target-task learning.
+          </p>
         </div>
-    </section>
 
-
-    <section class="section">
-        <div class="container is-max-desktop">
-            <h2 class="title is-3 has-text-centered section-title">Experimental Results</h2>
-
-            <div class="result-highlights">
-                <div class="result-highlight">
-                    <div class="num">+16–19%</div>
-                    <div class="label">Pseudo-label accuracy gain over the strongest baseline across three benchmarks.</div>
-                </div>
-                <div class="result-highlight">
-                    <div class="num">8 tasks</div>
-                    <div class="label">Evaluated across MetaWorld, Robosuite, and DeepMind Control Suite.</div>
-                </div>
-                <div class="result-highlight">
-                    <div class="num">Cross-embodiment</div>
-                    <div class="label">Reliable transfer between Robosuite and MetaWorld with different morphologies and action interfaces.</div>
-                </div>
-                <div class="result-highlight">
-                    <div class="num">Zero target labels</div>
-                    <div class="label">No human feedback collected on any target task during online learning.</div>
-                </div>
-            </div>
-
-            <div class="figure-card">
-                <img src="assets/baselines.png" alt="Learning curves comparing PrefO2O to baselines"
-                     style="width: 100%; border-radius: 4px;" loading="lazy">
-                <p class="figure-caption">
-                    Learning curves of PrefO2O and baseline methods across all tasks under both same-embodiment
-                    and cross-embodiment transfer protocols. PrefO2O consistently outperforms preference-transfer
-                    baselines and matches the SAC oracle on several tasks.
-                </p>
-            </div>
-
-            <div class="figure-card">
-                <img src="assets/ablation.png" alt="Ablation study"
-                     style="width: 100%; border-radius: 4px;" loading="lazy">
-                <p class="figure-caption">
-                    Ablation study on PrefO2O. Removing the latent space causes the largest performance drop,
-                    confirming that the learned task-invariant representation is the foundation for
-                    cross-task preference transfer.
-                </p>
-            </div>
-
-            <div class="figure-card">
-                <img src="assets/cross_tsne.png" alt="t-SNE analysis of the learned latent space"
-                     style="width: 100%; border-radius: 4px;" loading="lazy">
-                <p class="figure-caption">
-                    Latent space analysis for Sweep Into as the target domain under same-embodiment (left half)
-                    and cross-embodiment (right half) transfer. PrefO2O yields well-mixed source–target
-                    distributions with a clear preference partition, while the zero-shot baseline remains
-                    domain- and embodiment-clustered.
-                </p>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="section" id="real-world-deployment" style="background: #fafafa;">
-        <div class="container is-max-desktop">
-            <h2 class="title is-3 has-text-centered section-title">Real-World Deployment</h2>
-
-            <p class="has-text-centered" style="color: var(--muted); margin-bottom: 20px;">
-                Policies trained in simulation are transferred to a Kinova Jaco2 manipulator
-                <strong>without any target-task fine-tuning</strong>.
+        <div class="phase-grid">
+          <article class="phase-card">
+            <span class="phase-index">01</span>
+            <h3>Offline latent preference learning</h3>
+            <p>
+              Source-task trajectory pairs are encoded into behavioral representations. A preference VAE shapes a
+              task-invariant latent manifold, while a meta reward model learns a reusable preference-aligned reward prior.
             </p>
-
-            <div class="safety-note">
-                <strong>Safety note.</strong> To ensure safety during deployment we impose a soft
-                constraint: if the commanded turning angle or acceleration exceeds a threshold, the
-                corresponding action is discarded.
-            </div>
-
-            <h3 class="subtitle is-4 has-text-centered" style="margin-top: 24px;">
-                Cube Stack <span style="color: var(--muted); font-weight: 400;">— 7 / 10 success</span>
-            </h3>
-            <div class="video-row">
-                <div class="video-card">
-                    <video autoplay loop muted playsinline controls preload="metadata">
-                        <source src="videos/cube_stack_01.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="video-label">PrefO2O (ours)</div>
-                </div>
-            </div>
-
-            <h3 class="subtitle is-4 has-text-centered" style="margin-top: 24px;">
-                Pick and Place <span style="color: var(--muted); font-weight: 400;">— 6 / 10 success</span>
-            </h3>
-            <div class="video-row">
-                <div class="video-card">
-                    <video autoplay loop muted playsinline controls preload="metadata">
-                        <source src="videos/pick_place_01.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="video-label">PrefO2O (ours)</div>
-                </div>
-            </div>
+          </article>
+          <article class="phase-card">
+            <span class="phase-index">02</span>
+            <h3>Online zero-shot transfer</h3>
+            <p>
+              On an unseen target task, PrefO2O warm-starts the reward model and encoder, freezes the preference VAE,
+              aligns source and target latent pairs with optimal transport, and propagates confidence-weighted labels.
+            </p>
+          </article>
+          <article class="phase-card">
+            <span class="phase-index">03</span>
+            <h3>Reward adaptation and policy optimization</h3>
+            <p>
+              Pseudo-preference labels are filtered by OOD-aware curriculum sampling and confidence weighting, keeping
+              target reward learning stable as the policy explores new trajectories.
+            </p>
+          </article>
         </div>
+
+        <figure class="paper-figure large">
+          <img src="./assets/O2O_Frame.png" alt="Detailed PrefO2O offline and online framework">
+          <figcaption>
+            Offline, PrefO2O jointly trains the encoder, preference VAE, and meta reward model. Online, the frozen
+            preference manifold provides stable OT correspondences for label propagation and confidence-weighted reward
+            learning on unlabeled target tasks.
+          </figcaption>
+        </figure>
+      </div>
     </section>
 
+    <section class="section-block analysis-section">
+      <div class="container">
+        <div class="section-heading compact">
+          <p class="section-eyebrow">Representation analysis</p>
+          <h2>The latent space mixes domains while preserving preference labels.</h2>
+          <p>
+            The learned space is more task- and embodiment-invariant than raw trajectory-pair representations, yet it
+            remains organized around interpretable preference-relevant behavior.
+          </p>
+        </div>
 
-    <section class="section" id="bibtex">
-        <div class="container is-max-desktop">
-            <h2 class="title is-3 has-text-centered section-title">BibTeX</h2>
-            <pre class="bibtex-block"><code class="language-bibtex">@article{anonymous2026prefo2o,
-  title   = {Offline-to-Online Latent Preference Transfer for Zero-Shot Preference-Based Reinforcement Learning},
-  author  = {Anonymous},
+        <div class="analysis-grid">
+          <figure class="paper-figure">
+            <img src="./assets/cross_tsne.png" alt="t-SNE visualization of raw and latent preference spaces">
+            <figcaption>
+              t-SNE views show stronger cross-task mixing and clearer preference-label separation in the learned latent
+              space than in the raw trajectory-pair space.
+            </figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="./assets/semantic_attribute_01.png" alt="Semantic attributes aligned with the learned preference axis">
+            <figcaption>
+              Projection along the learned preference axis correlates with behavioral attributes such as approach
+              progress, path directness, and motion smoothness, including under cross-embodiment transfer.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block" id="results">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-eyebrow">Results</p>
+          <h2>Zero target labels, competitive policy learning.</h2>
+          <p>
+            Across Meta-World, Robosuite, and DeepMind Control Suite, PrefO2O consistently outperforms preference
+            transfer baselines and is competitive with oracle RL and PbRL references trained with privileged supervision.
+          </p>
+        </div>
+
+        <div class="result-grid">
+          <article>
+            <strong>83.9%</strong>
+            <span>Meta-World pseudo-label accuracy in intra-embodiment transfer</span>
+          </article>
+          <article>
+            <strong>83.8%</strong>
+            <span>DMControl pseudo-label accuracy in intra-embodiment transfer</span>
+          </article>
+          <article>
+            <strong>64.7%</strong>
+            <span>Meta-World pseudo-label accuracy retained across embodiments</span>
+          </article>
+          <article>
+            <strong>5-15 pp</strong>
+            <span>typical performance drop under embodiment shift</span>
+          </article>
+        </div>
+
+        <figure class="paper-figure large">
+          <img src="./assets/baselines.png" alt="Learning curves comparing PrefO2O against baselines">
+          <figcaption>
+            PrefO2O improves policy learning across same-embodiment and cross-embodiment transfer protocols, outperforming
+            PEARL, PrefFew, and RL-VLM-F while approaching oracle references on several tasks.
+          </figcaption>
+        </figure>
+
+        <div class="figure-pair">
+          <figure class="paper-figure">
+            <img src="./assets/ot_acc.png" alt="Pseudo-label accuracy comparison across benchmarks">
+            <figcaption>
+              OT in the learned latent preference space produces higher-quality pseudo-labels than raw-space transfer or
+              VLM-generated feedback, especially under cross-embodiment shift.
+            </figcaption>
+          </figure>
+          <figure class="paper-figure">
+            <img src="./assets/ablation.png" alt="Ablation study for PrefO2O">
+            <figcaption>
+              Removing the latent preference space causes the most consistent degradation; OOD sampling and weighting
+              matter most when the target policy visits sparse regions of the preference manifold.
+            </figcaption>
+          </figure>
+        </div>
+
+        <details class="supplemental">
+          <summary>One-to-one transfer</summary>
+          <figure class="paper-figure cropped">
+            <img src="./assets/one2one.png" alt="One-to-one transfer results across Meta-World tasks">
+            <figcaption>
+              Even with a single source task, PrefO2O often extracts useful transferable preference structure. Multi-source
+              transfer remains the strongest reference, showing the value of broader source-task coverage.
+            </figcaption>
+          </figure>
+        </details>
+      </div>
+    </section>
+
+    <section class="section-block real-section" id="real-world">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-eyebrow">Real-world robot validation</p>
+          <h2>Simulation-trained policies transfer to a physical Kinova Jaco2 arm.</h2>
+          <p>
+            PrefO2O policies are trained in simulation, then deployed on real Cube Stacking and Pick-and-Place tasks
+            without collecting target-task human feedback on the physical robot.
+          </p>
+        </div>
+
+        <figure class="paper-figure large">
+          <img src="./assets/real_demo_01.png" alt="Real-world Cube Stacking and Pick-and-Place deployment on a Kinova Jaco2 robot">
+          <figcaption>
+            Representative physical executions on Cube Stacking and Pick-and-Place. PrefO2O achieves 7/10 and 6/10
+            success rates respectively, while PEARL reaches 2/10 and 1/10 under the same protocol.
+          </figcaption>
+        </figure>
+
+        <div class="video-grid">
+          <article class="video-card">
+            <video autoplay loop muted playsinline controls preload="metadata">
+              <source src="./videos/cube_stack_01.mp4" type="video/mp4">
+            </video>
+            <div>
+              <h3>Cube Stacking</h3>
+              <p><strong>7/10</strong> real-world success with PrefO2O.</p>
+            </div>
+          </article>
+          <article class="video-card">
+            <video autoplay loop muted playsinline controls preload="metadata">
+              <source src="./videos/pick_place_01.mp4" type="video/mp4">
+            </video>
+            <div>
+              <h3>Pick-and-Place</h3>
+              <p><strong>6/10</strong> real-world success with PrefO2O.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block bib-section" id="bibtex">
+      <div class="container">
+        <div class="section-heading compact">
+          <p class="section-eyebrow">Citation</p>
+          <h2>BibTeX</h2>
+        </div>
+        <pre class="bibtex-block"><code>@article{anonymous2026prefo2o,
+  title   = {PrefO2O: Zero-Shot Preference-Based Reinforcement Learning via Offline-to-Online Latent Preference Transfer},
+  author  = {Anonymous Author(s)},
   journal = {Under review},
   year    = {2026}
 }</code></pre>
-        </div>
+      </div>
     </section>
+  </main>
 
-
-    <footer class="footer" style="padding: 2rem 1.5rem;">
-        <div class="container is-max-desktop has-text-centered" style="color: var(--muted); font-size: 0.9rem;">
-            Page template adapted from
-            <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noopener">Nerfies</a>.
-            All content anonymized for double-anonymous review.
-        </div>
-    </footer>
-
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Project page for PrefO2O. Page template lineage: <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noopener">Nerfies</a>.
+        Content is anonymized for double-anonymous review.
+      </p>
+    </div>
+  </footer>
 </body>
+
 </html>
